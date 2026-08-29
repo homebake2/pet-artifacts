@@ -3,7 +3,7 @@ id: a4cc0d6f-45e5-44c7-b96a-32423ea9415d
 identifier: PET-98
 type: Task
 title: Добавить rate limiting на регистрацию по IP (3 в день)
-state: Backlog
+state: Done
 priority: high
 labels: [auth, backend]
 parent: PET-89

@@ -3,7 +3,7 @@ id: f0c9a42a-d74d-47d1-8e62-77bf7d86e97a
 identifier: PET-99
 type: Task
 title: Исправить гонку при одновременной регистрации одного login
-state: Backlog
+state: Done
 priority: high
 labels: [auth, backend]
 parent: PET-89

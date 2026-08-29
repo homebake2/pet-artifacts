@@ -3,7 +3,7 @@ id: 872eafb4-0ac0-402f-8e94-1e73a541951a
 identifier: PET-97
 type: Task
 title: Создавать гостевого пользователя на бэкенде с рандомным логином и флагом is_guest
-state: Backlog
+state: Done
 priority: high
 labels: [auth, backend]
 parent: PET-89

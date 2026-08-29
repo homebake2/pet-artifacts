@@ -3,7 +3,7 @@ id: 8bd2bb3f-f5ce-42e7-91df-8a7689fdca3b
 identifier: PET-95
 type: Task
 title: Блокировать кнопку «Войти» на время запроса
-state: Backlog
+state: Done
 priority: medium
 labels: [auth, frontend]
 parent: PET-88

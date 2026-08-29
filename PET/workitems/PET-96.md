@@ -3,7 +3,7 @@ id: 5c7fea74-5c51-4292-ad03-8e2aa02fb97a
 identifier: PET-96
 type: Task
 title: Реализовать клиентскую часть гостевого входа с идентификатором устройства
-state: Backlog
+state: Done
 priority: high
 labels: [auth, frontend]
 parent: PET-88

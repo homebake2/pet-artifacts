@@ -3,7 +3,7 @@ id: f1e3735a-70b9-49be-a00d-7afc480c34c6
 identifier: PET-94
 type: Task
 title: Поднять минимальную длину пароля на клиенте до 8 символов
-state: Backlog
+state: Done
 priority: medium
 labels: [auth, frontend]
 parent: PET-88
