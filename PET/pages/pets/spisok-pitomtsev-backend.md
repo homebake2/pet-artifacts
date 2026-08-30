@@ -5,6 +5,7 @@ parent_page: PET/pages/pets/index.md
 workitems:
   - PET/workitems/PET-40.md
   - PET/workitems/PET-44.md
+  - PET/workitems/PET-181.md
 created_at: 2026-08-24
 updated_at: 2026-08-30
 ---
@@ -73,9 +74,3 @@ updated_at: 2026-08-30
 ## Хранение состояния и побочные эффекты
 
 Операция только читает данные (`GET`) и не изменяет состояние БД.
-
-## Связанные задачи
-
-* PET-40 — Скрыть мягко удалённых питомцев на всех эндпоинтах.
-
-* PET-44 — Убрать обязательность LanguageCode.
