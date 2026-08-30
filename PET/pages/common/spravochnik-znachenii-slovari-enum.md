@@ -3,7 +3,7 @@ id: 247d2c19-2478-49dc-b7c7-192dbeaf4279
 title: Справочник значений (словари enum)
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-08-24
+updated_at: 2026-08-30
 ---
 Единый справочник допустимых значений для полей-перечислений (enum), используемых в требованиях Pets и Calendar. Другие страницы требований должны ссылаться на этот документ вместо того, чтобы дублировать или расплывчато описывать списки значений.
 
@@ -15,7 +15,7 @@ DOG, CAT, HAMSTER, GUINEA_PIG, RABBIT, PARROT, CANARY, FISH, TURTLE, RAT, MOUSE,
 
 male, female, other.
 
-## Питомцы — Тип содержания (habilitation)
+## Питомцы — Тип содержания (habitation)
 
 indoor, outside, both.
 
