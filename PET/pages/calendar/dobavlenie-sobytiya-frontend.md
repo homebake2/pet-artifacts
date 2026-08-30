@@ -12,6 +12,7 @@ workitems:
   - PET/workitems/PET-129.md
   - PET/workitems/PET-131.md
   - PET/workitems/PET-132.md
+  - PET/workitems/PET-185.md
 created_at: 2026-08-24
 updated_at: 2026-08-30
 ---
