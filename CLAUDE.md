@@ -198,6 +198,22 @@ Before creating or changing a work item's `state`, `labels`, or `type`, read the
 
 Do not assume that enum values are the same across projects.
 
+## Requirement pages describe target state, not migration
+
+A requirement page (`pages/`) must describe the state the system is required to be in — not how the system gets there from its current state.
+
+Do not put into a requirement page:
+
+* narrative framing like "проблема" / "решение" / "было — стало" describing a change;
+* references to a change being made "в рамках PET-123" or similar transition language;
+* migration mechanics (SQL migration steps, rename/backfill procedures) as the primary content of a requirement — describe only the resulting schema/behavior if a schema/behavior fact must be stated.
+
+That information belongs in the work item (task) that implements the change. A work item description is the right place for "how to get from current state to required state" — migration steps, affected files, rollout order, dependencies between tasks.
+
+An exception already established in this repository: a page may contain a short "Известный пробел в реализации" ("known implementation gap") section when the requirement is not yet implemented and the gap itself needs tracking — this still states what's required and what's currently missing, not a change narrative. Do not use this as a template for describing arbitrary migrations; keep it to cases where a requirement genuinely isn't implemented yet.
+
+A page may reference a work item by identifier (e.g. "см. PET-123") the same way existing pages do, as a pointer for where implementation work is tracked — that is fine. What's not fine is explaining the mechanics of that work inside the requirement text itself.
+
 ## General editing principles
 
 Make the smallest change necessary to satisfy the user's request.
