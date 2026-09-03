@@ -2,8 +2,7 @@
 id: 74657f7b-3a10-4f31-843d-baa86ae81858
 title: Перенос локального аккаунта в сеть — Frontend
 parent_page: PET/pages/profile/index.md
-workitems:
-  - PET/workitems/PET-186.md
+workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

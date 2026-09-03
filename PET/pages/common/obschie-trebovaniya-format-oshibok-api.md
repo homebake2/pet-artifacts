@@ -4,7 +4,7 @@ title: "Общие требования: Формат ошибок API"
 parent_page: PET/pages/common/trebovaniya-obschie.md
 workitems: []
 created_at: 2026-08-27
-updated_at: 2026-08-27
+updated_at: 2026-09-03
 ---
 ## Единый формат тела ошибки
 

@@ -2,13 +2,7 @@
 id: 0be269c9-2303-4755-a8f7-27a72fe8f00b
 title: Редактирование профиля — Frontend
 parent_page: PET/pages/profile/index.md
-workitems:
-  - PET/workitems/PET-62.md
-  - PET/workitems/PET-63.md
-  - PET/workitems/PET-64.md
-  - PET/workitems/PET-65.md
-  - PET/workitems/PET-149.md
-  - PET/workitems/PET-152.md
+workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

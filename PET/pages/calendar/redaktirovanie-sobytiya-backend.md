@@ -2,13 +2,9 @@
 id: f3d885e8-63eb-40f0-b752-92304880d8c7
 title: Редактирование события — Backend
 parent_page: PET/pages/calendar/index.md
-workitems:
-  - PET/workitems/PET-32.md
-  - PET/workitems/PET-125.md
-  - PET/workitems/PET-137.md
-  - PET/workitems/PET-184.md
+workitems: []
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
@@ -74,7 +70,7 @@ updated_at: 2026-08-30
 
 * Конкурентное редактирование: сервер не выполняет никакой конфликт-детекции между одновременными PATCH-запросами к одному событию — действует стратегия last-write-wins, последний по времени обработки запрос определяет итоговое состояние события. Это осознанное решение для MVP.
 
-* Проверка владения событием (сверка pet_id, пользователя и статуса soft-delete) выполняется по общей политике, см. [Общие требования: IDOR и владение ресурсами](../common/obschie-trebovaniya-idor-i-vladenie-resursami.md) и [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md); сама реализация soft-delete у event (столбец deleted_at и его миграция) — см. задачу PET-137 на странице "Удаление события — Backend".
+* Проверка владения событием (сверка pet_id, пользователя и статуса soft-delete) выполняется по общей политике, см. [Общие требования: IDOR и владение ресурсами](../common/obschie-trebovaniya-idor-i-vladenie-resursami.md) и [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md); сама реализация soft-delete у event (столбец deleted_at и его миграция) — см. страницу "Удаление события — Backend".
 
 * Ответ 204 No Content не содержит обновлённых данных события; клиенту, которому нужны актуальные данные сразу после сохранения, следует выполнить отдельный GET /events/{id}.
 

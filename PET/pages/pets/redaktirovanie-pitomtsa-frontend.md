@@ -2,12 +2,7 @@
 id: 79aef5c0-d6cf-4749-8eb5-e77b374a6636
 title: Редактирование питомца — Frontend
 parent_page: PET/pages/pets/index.md
-workitems:
-  - PET/workitems/PET-50.md
-  - PET/workitems/PET-52.md
-  - PET/workitems/PET-53.md
-  - PET/workitems/PET-54.md
-  - PET/workitems/PET-74.md
+workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

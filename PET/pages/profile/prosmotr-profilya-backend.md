@@ -2,13 +2,9 @@
 id: eb14710f-5c99-4a0b-88d7-9aa6e7aeadf9
 title: Просмотр профиля — Backend
 parent_page: PET/pages/profile/index.md
-workitems:
-  - PET/workitems/PET-59.md
-  - PET/workitems/PET-60.md
-  - PET/workitems/PET-61.md
-  - PET/workitems/PET-73.md
+workitems: []
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 **Смотрите также:** [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md).
 

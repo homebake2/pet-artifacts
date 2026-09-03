@@ -2,11 +2,7 @@
 id: a704f8ab-17c2-4ae8-9d93-ca53fe4cb591
 title: Просмотр карточки питомца — Frontend
 parent_page: PET/pages/pets/index.md
-workitems:
-  - PET/workitems/PET-40.md
-  - PET/workitems/PET-47.md
-  - PET/workitems/PET-48.md
-  - PET/workitems/PET-49.md
+workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

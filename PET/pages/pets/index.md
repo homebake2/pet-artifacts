@@ -3,7 +3,7 @@ id: 8ab71577-9e9a-44e6-a08d-559c0e3e83ae
 title: "Требования: Pets"
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 
 ## Страницы
