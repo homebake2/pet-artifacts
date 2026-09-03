@@ -10,6 +10,8 @@ updated_at: 2026-09-03
 
 - [Добавление события — Backend](dobavlenie-sobytiya-backend.md)
 - [Добавление события — Frontend](dobavlenie-sobytiya-frontend.md)
+- [Графики динамики — Backend](grafiki-dinamiki-backend.md)
+- [Графики динамики — Frontend](grafiki-dinamiki-frontend.md)
 - [Просмотр календаря — Backend](prosmotr-kalendarya-backend.md)
 - [Просмотр календаря — Frontend](prosmotr-kalendarya-frontend.md)
 - [Редактирование события — Backend](redaktirovanie-sobytiya-backend.md)
