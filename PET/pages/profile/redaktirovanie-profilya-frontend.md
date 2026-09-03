@@ -10,9 +10,9 @@ workitems:
   - PET/workitems/PET-149.md
   - PET/workitems/PET-152.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
-**Смотрите также:** [Общие требования: UI-паттерны запросов](../common/obschie-trebovaniya-ui-patterny-zaprosov.md), [Общие требования: Сессия, 401 и авто-refresh токена](../common/obschie-trebovaniya-sessiya-401-i-avto-refresh-tokena.md).
+**Смотрите также:** [Общие требования: UI-паттерны запросов](../common/obschie-trebovaniya-ui-patterny-zaprosov.md), [Общие требования: Сессия, 401 и авто-refresh токена](../common/obschie-trebovaniya-sessiya-401-i-avto-refresh-tokena.md), [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md), [Редактирование профиля — Frontend (dataSource=local)](redaktirovanie-profilya-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
 ## 1. Назначение
 

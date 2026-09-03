@@ -10,13 +10,15 @@ workitems:
   - PET/workitems/PET-54.md
   - PET/workitems/PET-74.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
 * [Общие требования: UI-паттерны запросов](../common/obschie-trebovaniya-ui-patterny-zaprosov.md)
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
+
+* [Добавление питомца — Frontend (dataSource=local)](dobavlenie-pitomtsa-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
 * [Общие требования: Единый источник enum-словарей](../common/obschie-trebovaniya-edinyi-istochnik-enum-slovarei.md)
 

@@ -9,13 +9,15 @@ workitems:
   - PET/workitems/PET-136.md
   - PET/workitems/PET-138.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
 
 * [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md)
+
+* [Удаление события — Frontend (dataSource=local)](udalenie-sobytiya-frontend-local.md) — детальное поведение этого экрана в режиме local (мягкое удаление действует одинаково в обоих источниках данных).
 
 ## Назначение
 

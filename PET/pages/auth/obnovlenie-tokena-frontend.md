@@ -11,7 +11,7 @@ workitems:
   - PET/workitems/PET-109.md
   - PET/workitems/PET-110.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## 1. Назначение
 
@@ -22,6 +22,8 @@ updated_at: 2026-08-30
 * [Общие требования: UI-паттерны запросов](../common/obschie-trebovaniya-ui-patterny-zaprosov.md) — таймауты запросов, паттерн «не удалось загрузить + повторить».
 
 * [Общие требования: Сессия, 401 и авто-refresh токена](../common/obschie-trebovaniya-sessiya-401-i-avto-refresh-tokena.md) — правило single-session, лимит 1 попытки refresh, конкурентность refresh/logout, обработка сбоя записи в secure storage, таймаут /auth/refresh.
+
+* [Обновление токена — Frontend (dataSource=local)](obnovlenie-tokena-frontend-local.md) — почему этот флоу не имеет ветки для режима local.
 
 ## 2. Действующие лица и предусловия
 

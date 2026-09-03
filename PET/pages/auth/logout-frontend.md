@@ -9,7 +9,7 @@ workitems:
   - PET/workitems/PET-103.md
   - PET/workitems/PET-180.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## 1. Назначение
 
@@ -21,7 +21,9 @@ updated_at: 2026-08-30
 
 * [Общие требования: Сессия, 401 и авто-refresh токена](../common/obschie-trebovaniya-sessiya-401-i-avto-refresh-tokena.md) — single-session ограничение, конкурентность refresh/logout.
 
-* [Локальный режим (dataSource=local) — заглушка](../common/lokalnyi-rezhim-datasource-local-zaglushka.md) — поведение logout в режиме local описано там; здесь фиксируется только правило про обязательный сетевой вызов в режиме network.
+* [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md) — общие принципы хранения данных в режиме local.
+
+* [Logout — Frontend (dataSource=local)](logout-frontend-local.md) — детальное поведение выхода в режиме local; здесь фиксируется только правило про обязательный сетевой вызов в режиме network.
 
 ## 2. Действующие лица и предусловия
 

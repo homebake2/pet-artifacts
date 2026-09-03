@@ -12,7 +12,7 @@ workitems:
   - PET/workitems/PET-96.md
   - PET/workitems/PET-97.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## 1. Назначение
 
@@ -26,7 +26,9 @@ updated_at: 2026-08-30
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md) — errorCode/message/payload и локализация на клиенте по коду ошибки.
 
-* [Локальный режим (dataSource=local) — заглушка](../common/lokalnyi-rezhim-datasource-local-zaglushka.md) — описание поведения экрана в режиме local.
+* [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md) — общие принципы хранения данных в режиме local.
+
+* [Вход и регистрация — Frontend (dataSource=local)](vhod-i-registratsiya-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
 ## 2. Действующие лица и предусловия
 

@@ -9,7 +9,7 @@ workitems:
   - PET/workitems/PET-122.md
   - PET/workitems/PET-123.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
@@ -17,7 +17,9 @@ updated_at: 2026-08-30
 
 * [Общие требования: Единый источник enum-словарей](../common/obschie-trebovaniya-edinyi-istochnik-enum-slovarei.md)
 
-* [Локальный режим (dataSource=local) — заглушка](../common/lokalnyi-rezhim-datasource-local-zaglushka.md)
+* [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md)
+
+* [Просмотр календаря — Frontend (dataSource=local)](prosmotr-kalendarya-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
 ## Назначение
 
@@ -27,7 +29,7 @@ updated_at: 2026-08-30
 
 * Пользователь авторизован и находится на вкладке "Календарь".
 
-* Приложение поддерживает два режима работы: онлайн (данные с сервера) и офлайн (локальный кэш). Поведение офлайн-ветки (dataSource=local), включая моделирование soft-delete питомца в локальном хранилище, будет описано отдельно — см. [Локальный режим (dataSource=local) — заглушка](../common/lokalnyi-rezhim-datasource-local-zaglushka.md).
+* Приложение поддерживает два режима работы: онлайн (данные с сервера) и офлайн (локальный кэш). Поведение офлайн-ветки (dataSource=local) описано на отдельной странице — см. [Просмотр календаря — Frontend (dataSource=local)](prosmotr-kalendarya-frontend-local.md).
 
 ## Основной сценарий
 

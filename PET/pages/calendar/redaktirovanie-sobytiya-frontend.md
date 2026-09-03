@@ -10,13 +10,15 @@ workitems:
   - PET/workitems/PET-133.md
   - PET/workitems/PET-134.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
 * [Общие требования: UI-паттерны запросов](../common/obschie-trebovaniya-ui-patterny-zaprosov.md)
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
+
+* [Редактирование события — Frontend (dataSource=local)](redaktirovanie-sobytiya-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
 * [Общие требования: IDOR и владение ресурсами](../common/obschie-trebovaniya-idor-i-vladenie-resursami.md)
 

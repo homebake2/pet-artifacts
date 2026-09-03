@@ -14,7 +14,7 @@ workitems:
   - PET/workitems/PET-132.md
   - PET/workitems/PET-185.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
@@ -24,7 +24,9 @@ updated_at: 2026-08-30
 
 * [Общие требования: Единый источник enum-словарей](../common/obschie-trebovaniya-edinyi-istochnik-enum-slovarei.md)
 
-* [Локальный режим (dataSource=local) — заглушка](../common/lokalnyi-rezhim-datasource-local-zaglushka.md)
+* [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md)
+
+* [Добавление события — Frontend (dataSource=local)](dobavlenie-sobytiya-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
 ## Назначение
 
@@ -94,7 +96,7 @@ updated_at: 2026-08-30
 
 * Онлайн: после успешного 201 Created система должна инвалидировать кэш активностей (['activities', petId, ...]) затронутого питомца, чтобы календарь и карточка питомца сразу отразили новое событие без ручного обновления.
 
-* Офлайн: новое событие сразу дописывается в локальные данные питомца (pet.events) и становится видимым в календаре немедленно. Стратегия последующей синхронизации офлайн-созданных событий с сервером будет описана отдельно — см. [Локальный режим (dataSource=local) — заглушка](../common/lokalnyi-rezhim-datasource-local-zaglushka.md).
+* Офлайн: новое событие сразу сохраняется в локальное хранилище и становится видимым в календаре немедленно — точный алгоритм см. [Добавление события — Frontend (dataSource=local)](dobavlenie-sobytiya-frontend-local.md). Данные `local` и `network` — независимые пространства данных без автоматической синхронизации между ними (осознанное архитектурное решение, см. [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md), раздел «Переключение источника данных»).
 
 **Idempotency key.** Для защиты от дублирования события при обрыве соединения и повторной отправке формы клиент генерирует и передаёт заголовок `Idempotency-Key` вместе с запросом `POST /events` (см. серверную часть механизма — страница «Добавление события — Backend», раздел «Хранение состояния и побочные эффекты»). Точный протокол:
 

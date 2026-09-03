@@ -5,13 +5,15 @@ parent_page: PET/pages/pets/index.md
 workitems:
   - PET/workitems/PET-47.md
 created_at: 2026-08-24
-updated_at: 2026-08-30
+updated_at: 2026-09-03
 ---
 ## Смотрите также
 
 * [Общие требования: Сессия, 401 и авто-refresh токена](../common/obschie-trebovaniya-sessiya-401-i-avto-refresh-tokena.md)
 
 * [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md)
+
+* [Удаление питомца — Frontend (dataSource=local)](udalenie-pitomtsa-frontend-local.md) — детальное поведение этого экрана в режиме local (мягкое удаление, включая каскад на события, действует одинаково в обоих источниках данных).
 
 ## Назначение
 
