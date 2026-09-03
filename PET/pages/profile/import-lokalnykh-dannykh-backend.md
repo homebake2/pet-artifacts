@@ -14,7 +14,7 @@ updated_at: 2026-09-03
 
 * [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md)
 
-* [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md) — модель локальных коллекций (Питомцы, События, Профили), из которых формируется тело запроса.
+* [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md) — модель локальных коллекций (Питомцы, События, Профили), из которых формируется тело запроса, и раздел «Поддержание паритета сущностей при переносе» — обязательное правило держать эту схему запроса синхронной с любыми изменениями сущностей.
 
 * [Добавление питомца — Backend](../pets/dobavlenie-pitomtsa-backend.md), [Добавление события — Backend](../calendar/dobavlenie-sobytiya-backend.md) — набор полей питомца/события, переносимых без изменений.
 
