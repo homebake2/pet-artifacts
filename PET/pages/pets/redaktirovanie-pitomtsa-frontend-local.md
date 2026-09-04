@@ -4,11 +4,13 @@ title: Редактирование питомца — Frontend (dataSource=loca
 parent_page: PET/pages/pets/index.md
 workitems: []
 created_at: 2026-09-03
-updated_at: 2026-09-03
+updated_at: 2026-09-04
 ---
 ## Смотрите также
 
 * [Редактирование питомца — Frontend](redaktirovanie-pitomtsa-frontend.md) — общий сценарий экрана; эта страница описывает только ветку `dataSource=local`.
+
+* [Фотография питомца — Frontend (dataSource=local)](fotografiya-pitomtsa-frontend-local.md) — управление фотографией (`photoUri`) не входит в эту форму, как и в сетевом режиме.
 
 * [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md).
 
@@ -26,7 +28,7 @@ updated_at: 2026-09-03
 
 2. Кнопка «Сохранить» переходит в состояние загрузки на время записи (см. [Общие требования: UI-паттерны запросов](../common/obschie-trebovaniya-ui-patterny-zaprosov.md)).
 
-3. Клиент заменяет изменяемые поля питомца в локальной коллекции по его `id` (сохраняя `id`, `ownerId`, `isDeleted`) и дожидается подтверждения записи.
+3. Клиент заменяет изменяемые поля питомца в локальной коллекции по его `id` (сохраняя `id`, `ownerId`, `isDeleted`, `photoUri` — фотография не входит в форму редактирования, см. «Фотография питомца — Frontend (dataSource=local)») и дожидается подтверждения записи.
 
 4. После успешной записи клиент показывает результат и возвращает пользователя на карточку питомца.
 

@@ -4,11 +4,13 @@ title: Просмотр карточки питомца — Frontend (dataSource
 parent_page: PET/pages/pets/index.md
 workitems: []
 created_at: 2026-09-03
-updated_at: 2026-09-03
+updated_at: 2026-09-04
 ---
 ## Смотрите также
 
 * [Просмотр карточки питомца — Frontend](prosmotr-kartochki-pitomtsa-frontend.md) — общий сценарий экрана; эта страница описывает только ветку `dataSource=local`.
+
+* [Фотография питомца — Frontend (dataSource=local)](fotografiya-pitomtsa-frontend-local.md) — хранение и отображение фотографии в этом режиме.
 
 * [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md).
 

@@ -4,11 +4,13 @@ title: Список питомцев — Frontend (dataSource=local)
 parent_page: PET/pages/pets/index.md
 workitems: []
 created_at: 2026-09-03
-updated_at: 2026-09-03
+updated_at: 2026-09-04
 ---
 ## Смотрите также
 
 * [Список питомцев — Frontend](spisok-pitomtsev-frontend.md) — общий сценарий экрана; эта страница описывает только ветку `dataSource=local`.
+
+* [Фотография питомца — Frontend (dataSource=local)](fotografiya-pitomtsa-frontend-local.md) — источник фотографии на карточках списка в этом режиме (`photoUri`).
 
 * [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md).
 

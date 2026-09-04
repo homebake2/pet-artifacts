@@ -4,7 +4,7 @@ title: Просмотр профиля — Frontend
 parent_page: PET/pages/profile/index.md
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-09-03
+updated_at: 2026-09-04
 ---
 **Смотрите также:** [Общие требования: Сессия, 401 и авто-refresh токена](../common/obschie-trebovaniya-sessiya-401-i-avto-refresh-tokena.md), [Локальный режим (dataSource=local) — общая архитектура хранения](../common/lokalnyi-rezhim-datasource-local-zaglushka.md), [Просмотр профиля — Frontend (dataSource=local)](prosmotr-profilya-frontend-local.md) — детальное поведение этого экрана в режиме local.
 
@@ -31,6 +31,8 @@ updated_at: 2026-09-03
 4. Система отображает: аватар пользователя, ФИО, логин (см. п. «Бизнес-правила»), email, телефон, кнопку «Редактировать».
 
 5. Система предоставляет навигацию на настройки, главный экран и экран редактирования профиля.
+
+6. Экран должен поддерживать pull-to-refresh: жест обязан гарантированно инициировать повторный запрос данных профиля и показывать индикатор обновления до его завершения.
 
 ## 4. Бизнес-правила и валидация
 
