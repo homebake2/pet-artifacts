@@ -3,13 +3,16 @@ id: c697b68d-0e71-422d-b4bd-a49ebe217a99
 title: "Требования: Calendar"
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-09-03
+updated_at: 2026-09-04
 ---
 
 ## Страницы
 
 - [Добавление события — Backend](dobavlenie-sobytiya-backend.md)
 - [Добавление события — Frontend](dobavlenie-sobytiya-frontend.md)
+- [Файлы события — Backend](fayly-sobytiya-backend.md)
+- [Файлы события — Frontend](fayly-sobytiya-frontend.md)
+- [Файлы события — Frontend (dataSource=local)](fayly-sobytiya-frontend-local.md)
 - [Графики динамики — Backend](grafiki-dinamiki-backend.md)
 - [Графики динамики — Frontend](grafiki-dinamiki-frontend.md)
 - [Просмотр календаря — Backend](prosmotr-kalendarya-backend.md)

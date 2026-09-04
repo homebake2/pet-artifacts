@@ -21,7 +21,7 @@ updated_at: 2026-09-04
 | Аккаунты | Локально зарегистрированные учётные записи: `id`, `login`, `passwordHash`, `createdAt`, `transferredAt` | `id` (UUID) | — (глобальная коллекция) |
 | Сессия | Указатель на активный локальный аккаунт: `{ accountId }` либо отсутствует | — (единственная запись) | — |
 | Питомцы | Объекты `Pet` — тот же набор полей, что в форме питомца, плюс `id`, `ownerId`, `isDeleted`, `deletedAt`, `photoUri` (nullable, путь к файлу фотографии в постоянном хранилище приложения — см. [Фотография питомца — Frontend (dataSource=local)](../pets/fotografiya-pitomtsa-frontend-local.md)) | `id` (UUID) | по `ownerId` |
-| События | Объекты `Event` — тот же набор полей, что в форме события, плюс `id`, `petId`, `ownerId`, `isDeleted`, `deletedAt`. Поле `value` хранится тем же типизированным объектом и с той же валидацией, что и в режиме `network` (см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md)) — собственного, упрощённого локального представления значения события (строка, «уплощённые» поля) не существует | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| События | Объекты `Event` — тот же набор полей, что в форме события, плюс `id`, `petId`, `ownerId`, `isDeleted`, `deletedAt`, `files` (массив объектов, не более 10 элементов, — фотографии и документы в постоянном хранилище приложения — см. [Файлы события — Frontend (dataSource=local)](../calendar/fayly-sobytiya-frontend-local.md)). Поле `value` хранится тем же типизированным объектом и с той же валидацией, что и в режиме `network` (см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md)) — собственного, упрощённого локального представления значения события (строка, «уплощённые» поля) не существует | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
 | Профили | Объекты `UserData` (ФИО, email, телефон) | `ownerId` | по `ownerId` |
 | Настройки приложения | Тема, язык, выбранный `dataSource` | — (единственная запись) | — |
 
@@ -30,6 +30,8 @@ updated_at: 2026-09-04
 ## Хранение файлов
 
 Бинарное содержимое (например, фотография питомца, см. [Фотография питомца — Frontend (dataSource=local)](../pets/fotografiya-pitomtsa-frontend-local.md)) НЕ хранится внутри коллекций AsyncStorage вместе с остальными данными — AsyncStorage не предназначен для бинарных данных и имеет ограничения по объёму значения. Такое содержимое ОБЯЗАНО храниться как отдельный файл в приватной директории приложения на устройстве, а соответствующая коллекция хранит только путь к этому файлу (`file://...`) обычным текстовым полем (например, `photoUri` у `Pet`) — той же природы, что и `photoUrl` в сетевом режиме, так что остальной код (маппер, UI-компонент) работает с обоими режимами одинаково, не различая источник данных.
+
+Тот же принцип применяется и к сущностям с несколькими файлами: каждый выбранный файл копируется в постоянную директорию приложения отдельно, а коллекция хранит не одно текстовое поле, а массив (например, `files` у `Event`, см. [Файлы события — Frontend (dataSource=local)](../calendar/fayly-sobytiya-frontend-local.md)) — той же природы, что и `files` в сетевом режиме, где каждый элемент массива тоже адресует один файл.
 
 Доступ к файловой системе устройства реализуется через `@dr.pogodin/react-native-fs` — поддерживаемый форк `react-native-fs` с поддержкой TurboModules/New Architecture, обязательной в этом проекте (RN 0.83, чистый React Native без Expo, `newArchEnabled=true` — Old Architecture в этой версии RN отсутствует как опция). Оригинальный пакет `itinance/react-native-fs` заброшен мейнтейнерами и не гарантирует полноценной поддержки New Architecture — использовать его не следует. Альтернатива — `react-native-blob-util` (поддерживает New Architecture начиная с версии 0.22.0), но она ориентирована прежде всего на блобы и HTTP-передачу файлов, а не на файловую систему устройства общего назначения, поэтому для базового набора операций (запись/чтение/удаление локального файла) уступает как выбор по умолчанию.
 
@@ -98,6 +100,7 @@ updated_at: 2026-09-04
 * [Просмотр календаря — Frontend (dataSource=local)](../calendar/prosmotr-kalendarya-frontend-local.md)
 * [Добавление события — Frontend (dataSource=local)](../calendar/dobavlenie-sobytiya-frontend-local.md)
 * [Редактирование события — Frontend (dataSource=local)](../calendar/redaktirovanie-sobytiya-frontend-local.md)
+* [Файлы события — Frontend (dataSource=local)](../calendar/fayly-sobytiya-frontend-local.md)
 * [Удаление события — Frontend (dataSource=local)](../calendar/udalenie-sobytiya-frontend-local.md)
 * [Графики динамики — Frontend (dataSource=local)](../calendar/grafiki-dinamiki-frontend-local.md)
 * [Список питомцев — Frontend (dataSource=local)](../pets/spisok-pitomtsev-frontend-local.md)
