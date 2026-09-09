@@ -4,7 +4,7 @@ title: "Общие требования: Файлы сущностей"
 parent_page: PET/pages/integrations/index.md
 workitems: []
 created_at: 2026-09-04
-updated_at: 2026-09-04
+updated_at: 2026-09-09
 ---
 ## Смотрите также
 
@@ -55,6 +55,13 @@ CREATE TABLE file (
 | --- | --- | --- | --- | --- |
 | `pet_photo` | Питомец (`pet`) | ровно 1 | `pet.id = owner_id AND pet.user_id = userID AND pet.deleted_at IS NULL` | `image/jpeg`, `image/png`, `image/webp` |
 | `event_file` | Событие (`event`) | до 10 | `event.id = owner_id AND event.deleted_at IS NULL AND EXISTS (SELECT 1 FROM pet WHERE pet.id = event.pet_id AND pet.user_id = userID AND pet.deleted_at IS NULL)` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `vaccination_file` | Вакцинация (`vaccination`), см. [Вакцинации — Backend](../vetpassport/vaktsinatsii-backend.md) | до 10 | `vaccination.id = owner_id AND vaccination.deleted_at IS NULL AND EXISTS (SELECT 1 FROM pet WHERE pet.id = vaccination.pet_id AND pet.user_id = userID AND pet.deleted_at IS NULL)` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `disease_file` | Заболевание (`disease`), см. [Заболевания — Backend](../vetpassport/zabolevaniya-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `disease.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `vet_visit_file` | Визит к ветеринару (`vet_visit`), см. [Посещения ветеринара — Backend](../vetpassport/vizity-veterinara-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `vet_visit.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `allergy_file` | Аллергия (`allergy`), см. [Аллергии — Backend](../vetpassport/allergii-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `allergy.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `medication_file` | Лекарство (`medication`), см. [Лекарства — Backend](../vetpassport/lekarstva-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `medication.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+
+Пять новых типов Ведпаспорта повторяют форму чтения `files`/`files_count`, уже установленную для `event_file` (см. [Файлы события — Backend](../calendar/fayly-sobytiya-backend.md)): полный список `files` — в детальном ответе одной записи (`GET`/`POST` конкретной сущности), счётчик `files_count` — в элементах списка. Подробности чтения для каждого типа — на собственной странице сущности, не здесь (см. «Область действия» ниже).
 
 Будущие типы владельцев добавляются в этот реестр отдельной работой при реализации соответствующей сущности — сама эта страница не меняется, расширяется только таблица.
 

@@ -4,7 +4,7 @@ title: Локальный режим (dataSource=local) — целевая ар�
 parent_page: PET/pages/common/trebovaniya-obschie.md
 workitems: []
 created_at: 2026-08-27
-updated_at: 2026-09-04
+updated_at: 2026-09-09
 ---
 ## Назначение
 
@@ -20,8 +20,13 @@ updated_at: 2026-09-04
 | --- | --- | --- | --- |
 | Аккаунты | Локально зарегистрированные учётные записи: `id`, `login`, `passwordHash`, `createdAt`, `transferredAt` | `id` (UUID) | — (глобальная коллекция) |
 | Сессия | Указатель на активный локальный аккаунт: `{ accountId }` либо отсутствует | — (единственная запись) | — |
-| Питомцы | Объекты `Pet` — тот же набор полей, что в форме питомца, плюс `id`, `ownerId`, `isDeleted`, `deletedAt`, `photoUri` (nullable, путь к файлу фотографии в постоянном хранилище приложения — см. [Фотография питомца — Frontend (dataSource=local)](../pets/fotografiya-pitomtsa-frontend-local.md)) | `id` (UUID) | по `ownerId` |
+| Питомцы | Объекты `Pet` — тот же набор полей, что в форме питомца, плюс `id`, `ownerId`, `isDeleted`, `deletedAt`, `photoUri` (nullable, путь к файлу фотографии в постоянном хранилище приложения — см. [Фотография питомца — Frontend (dataSource=local)](../pets/fotografiya-pitomtsa-frontend-local.md)), `bodyCondition` (nullable, см. [Кондиция — Frontend (dataSource=local)](../vetpassport/konditsiya-frontend-local.md)) | `id` (UUID) | по `ownerId` |
 | События | Объекты `Event` — тот же набор полей, что в форме события, плюс `id`, `petId`, `ownerId`, `isDeleted`, `deletedAt`, `files` (массив объектов, не более 10 элементов, — фотографии и документы в постоянном хранилище приложения — см. [Файлы события — Frontend (dataSource=local)](../calendar/fayly-sobytiya-frontend-local.md)). Поле `value` хранится тем же типизированным объектом и с той же валидацией, что и в режиме `network` (см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md)) — собственного, упрощённого локального представления значения события (строка, «уплощённые» поля) не существует | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Вакцинации | Объекты `Vaccination` — см. [Вакцинации — Frontend (dataSource=local)](../vetpassport/vaktsinatsii-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Заболевания | Объекты `Disease` — см. [Заболевания — Frontend (dataSource=local)](../vetpassport/zabolevaniya-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Посещения ветеринара | Объекты `VetVisit` — см. [Посещения ветеринара — Frontend (dataSource=local)](../vetpassport/vizity-veterinara-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Аллергии | Объекты `Allergy` — см. [Аллергии — Frontend (dataSource=local)](../vetpassport/allergii-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Лекарства | Объекты `Medication` — см. [Лекарства — Frontend (dataSource=local)](../vetpassport/lekarstva-frontend-local.md); единственная коллекция, где удаление связанных записей коллекции «События» физическое, а не мягкое — см. раздел «Исключение из правила soft-delete» на «Лекарства — Backend» | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
 | Профили | Объекты `UserData` (ФИО, email, телефон) | `ownerId` | по `ownerId` |
 | Настройки приложения | Тема, язык, выбранный `dataSource` | — (единственная запись) | — |
 
@@ -52,6 +57,8 @@ updated_at: 2026-09-04
 Питомцы и события в режиме `local` удаляются мягко — через поле `deletedAt`, без физического удаления записи, — по тому же правилу, что действует для сетевого режима (см. [Общие требования: Soft-delete](obschie-trebovaniya-soft-delete.md)). Каждое чтение (список, карточка, календарь) ОБЯЗАНО исключать записи с непустым `deletedAt`. Мягкое удаление питомца каскадно помечает удалёнными и все его события — событие мягко удалённого питомца не должно быть видимо ни на одном экране, той же логикой, что и на сервере. Восстановление удалённых записей не реализуется — как и в сетевом режиме (см. ту же страницу).
 
 Исключение — удаление аккаунта целиком (см. настройки приложения): это единственная операция, для которой физическое (безвозвратное) удаление всех данных аккаунта из всех локальных коллекций — ожидаемое и корректное поведение, симметрично тому, что удаление аккаунта не входит в область правила soft-delete и на backend (см. ту же общую страницу).
+
+Второе, точечное исключение: записи коллекции «События», созданные по расписанию лекарства (коллекция «Лекарства»), при удалении/пересоздании этого набора событий удаляются из локального хранилища физически, а не мягко — см. [Лекарства — Backend](../vetpassport/lekarstva-backend.md), раздел «Исключение из правила soft-delete», и [Лекарства — Frontend (dataSource=local)](../vetpassport/lekarstva-frontend-local.md). Само лекарство и все прочие сущности Ведпаспорта (вакцинации, заболевания, посещения ветеринара, аллергии) удаляются мягко, без исключений.
 
 ## Обработка ошибок хранилища
 
@@ -114,3 +121,9 @@ updated_at: 2026-09-04
 * [Перенос локального аккаунта в сеть — Frontend](../profile/perenos-lokalnogo-akkaunta-v-set-frontend.md)
 * [Импорт из локального аккаунта — Frontend](../profile/import-iz-lokalnogo-akkaunta-frontend.md)
 * [Импорт локальных данных — Backend](../profile/import-lokalnykh-dannykh-backend.md)
+* [Вакцинации — Frontend (dataSource=local)](../vetpassport/vaktsinatsii-frontend-local.md)
+* [Кондиция — Frontend (dataSource=local)](../vetpassport/konditsiya-frontend-local.md)
+* [Заболевания — Frontend (dataSource=local)](../vetpassport/zabolevaniya-frontend-local.md)
+* [Посещения ветеринара — Frontend (dataSource=local)](../vetpassport/vizity-veterinara-frontend-local.md)
+* [Аллергии — Frontend (dataSource=local)](../vetpassport/allergii-frontend-local.md)
+* [Лекарства — Frontend (dataSource=local)](../vetpassport/lekarstva-frontend-local.md)

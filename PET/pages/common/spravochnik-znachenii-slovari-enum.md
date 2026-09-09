@@ -3,7 +3,7 @@ id: 247d2c19-2478-49dc-b7c7-192dbeaf4279
 title: Справочник значений (словари enum)
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-09-03
+updated_at: 2026-09-09
 ---
 Единый справочник допустимых значений для полей-перечислений (enum), используемых в требованиях Pets и Calendar. Другие страницы требований должны ссылаться на этот документ вместо того, чтобы дублировать или расплывчато описывать списки значений.
 
@@ -80,3 +80,23 @@ normal, abnormal.
 ## Календарь — Интервал агрегации графика (bucket)
 
 day, week, month.
+
+## Ведпаспорт — Статус заболевания (disease.status)
+
+active, cured.
+
+## Ведпаспорт — Степень тяжести аллергии (allergy.severity)
+
+mild, moderate, severe.
+
+## Ведпаспорт — Кондиция (pet.body_condition)
+
+underweight, thin, normal, overweight, obese.
+
+Пятибалльная шкала телосложения (body condition score), упрощённая до пяти значений: `underweight` — истощение, `thin` — ниже нормы, `normal` — норма, `overweight` — избыточный вес, `obese` — ожирение. См. [Кондиция — Backend](../vetpassport/konditsiya-backend.md).
+
+## Ведпаспорт — Статус вакцинации (computed, не хранится)
+
+overdue, soon, current.
+
+Не enum-поле модели данных — вычисляется на клиенте из `vaccination.next_date` относительно текущей даты (см. [Вакцинации — Frontend](../vetpassport/vaktsinatsii-frontend.md)): `overdue` — `next_date` в прошлом, `soon` — в пределах 30 дней включительно, `current` — позже. Записан здесь для единообразия с остальными словарями страницы, а не потому что backend валидирует или хранит это значение.
