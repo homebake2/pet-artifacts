@@ -50,7 +50,7 @@ updated_at: 2026-09-10
 
 * 404 используется как для случая "событие не существует", так и для случая "событие принадлежит другому пользователю" — это осознанное решение по безопасности, не позволяющее внешнему наблюдателю различить эти два случая и тем самым подтвердить существование чужого события, в соответствии с [Общие требования: IDOR и владение ресурсами](../common/obschie-trebovaniya-idor-i-vladenie-resursami.md).
 
-* Все эндпоинты, читающие события (в т.ч. GET /activities, GET /activities/calendar, GET /activities/day, GET /events/{id} и GET /pet/{id}/events), должны исключать мягко удалённые события (фильтр deleted_at IS NULL) — аналогично политике мягкого удаления питомцев, см. [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md).
+* Все эндпоинты, читающие события (в т.ч. GET /activities, GET /activities/calendar, GET /activities/day, GET /activities/nearest, GET /events/{id} и GET /pet/{id}/events), должны исключать мягко удалённые события (фильтр deleted_at IS NULL) — аналогично политике мягкого удаления питомцев, см. [Общие требования: Soft-delete](../common/obschie-trebovaniya-soft-delete.md).
 
 * Политика хранения мягко удалённых событий: строки хранятся бесконечно, физическая очистка/архивация не предусмотрена — этого достаточно для MVP.
 
