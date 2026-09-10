@@ -81,21 +81,21 @@ normal, abnormal.
 
 day, week, month.
 
-## Ведпаспорт — Статус заболевания (disease.status)
+## Ветпаспорт — Статус заболевания (disease.status)
 
 active, cured.
 
-## Ведпаспорт — Степень тяжести аллергии (allergy.severity)
+## Ветпаспорт — Степень тяжести аллергии (allergy.severity)
 
 mild, moderate, severe.
 
-## Ведпаспорт — Кондиция (pet.body_condition)
+## Ветпаспорт — Кондиция (pet.body_condition)
 
 underweight, thin, normal, overweight, obese.
 
 Пятибалльная шкала телосложения (body condition score), упрощённая до пяти значений: `underweight` — истощение, `thin` — ниже нормы, `normal` — норма, `overweight` — избыточный вес, `obese` — ожирение. См. [Кондиция — Backend](../vetpassport/konditsiya-backend.md).
 
-## Ведпаспорт — Статус вакцинации (computed, не хранится)
+## Ветпаспорт — Статус вакцинации (computed, не хранится)
 
 overdue, soon, current.
 

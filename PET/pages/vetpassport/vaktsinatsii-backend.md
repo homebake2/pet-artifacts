@@ -8,7 +8,7 @@ updated_at: 2026-09-09
 ---
 ## Смотрите также
 
-* [Требования: Ведпаспорт](index.md)
+* [Требования: Ветпаспорт](index.md)
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
 
@@ -18,7 +18,7 @@ updated_at: 2026-09-09
 
 * [Общие требования: Файлы сущностей](../integrations/obschie-trebovaniya-fayly-sushchnostei.md) — подключение `owner_type = vaccination_file`.
 
-* [Справочник значений (словари enum)](../common/spravochnik-znachenii-slovari-enum.md), раздел «Ведпаспорт — Статус вакцинации (computed)».
+* [Справочник значений (словари enum)](../common/spravochnik-znachenii-slovari-enum.md), раздел «Ветпаспорт — Статус вакцинации (computed)».
 
 * [Модель значения события и реестр метрик](../common/model-znacheniya-sobytiya-i-metriki.md) — тип события `other`, используемый для напоминаний, создаваемых этим флоу.
 

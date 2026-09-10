@@ -61,7 +61,7 @@ CREATE TABLE file (
 | `allergy_file` | Аллергия (`allergy`), см. [Аллергии — Backend](../vetpassport/allergii-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `allergy.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 | `medication_file` | Лекарство (`medication`), см. [Лекарства — Backend](../vetpassport/lekarstva-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `medication.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 
-Пять новых типов Ведпаспорта повторяют форму чтения `files`/`files_count`, уже установленную для `event_file` (см. [Файлы события — Backend](../calendar/fayly-sobytiya-backend.md)): полный список `files` — в детальном ответе одной записи (`GET`/`POST` конкретной сущности), счётчик `files_count` — в элементах списка. Подробности чтения для каждого типа — на собственной странице сущности, не здесь (см. «Область действия» ниже).
+Пять новых типов Ветпаспорта повторяют форму чтения `files`/`files_count`, уже установленную для `event_file` (см. [Файлы события — Backend](../calendar/fayly-sobytiya-backend.md)): полный список `files` — в детальном ответе одной записи (`GET`/`POST` конкретной сущности), счётчик `files_count` — в элементах списка. Подробности чтения для каждого типа — на собственной странице сущности, не здесь (см. «Область действия» ниже).
 
 Будущие типы владельцев добавляются в этот реестр отдельной работой при реализации соответствующей сущности — сама эта страница не меняется, расширяется только таблица.
 

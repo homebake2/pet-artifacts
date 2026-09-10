@@ -8,7 +8,7 @@ updated_at: 2026-09-09
 ---
 ## Смотрите также
 
-* [Требования: Ведпаспорт](index.md)
+* [Требования: Ветпаспорт](index.md)
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
 

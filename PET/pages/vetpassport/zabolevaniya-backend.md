@@ -8,7 +8,7 @@ updated_at: 2026-09-09
 ---
 ## Смотрите также
 
-* [Требования: Ведпаспорт](index.md)
+* [Требования: Ветпаспорт](index.md)
 
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
 
@@ -18,7 +18,7 @@ updated_at: 2026-09-09
 
 * [Общие требования: Файлы сущностей](../integrations/obschie-trebovaniya-fayly-sushchnostei.md) — подключение `owner_type = disease_file`.
 
-* [Справочник значений (словари enum)](../common/spravochnik-znachenii-slovari-enum.md), раздел «Ведпаспорт — Статус заболевания».
+* [Справочник значений (словари enum)](../common/spravochnik-znachenii-slovari-enum.md), раздел «Ветпаспорт — Статус заболевания».
 
 ## Назначение
 
