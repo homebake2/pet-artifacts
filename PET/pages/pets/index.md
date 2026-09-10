@@ -3,7 +3,7 @@ id: 8ab71577-9e9a-44e6-a08d-559c0e3e83ae
 title: "Требования: Pets"
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-09-04
+updated_at: 2026-09-10
 ---
 
 ## Страницы
@@ -16,6 +16,8 @@ updated_at: 2026-09-04
 - [Просмотр карточки питомца — Frontend](prosmotr-kartochki-pitomtsa-frontend.md)
 - [Редактирование питомца — Backend](redaktirovanie-pitomtsa-backend.md)
 - [Редактирование питомца — Frontend](redaktirovanie-pitomtsa-frontend.md)
+- [События питомца — Frontend](sobytiya-pitomtsa-frontend.md)
+- [События питомца — Frontend (dataSource=local)](sobytiya-pitomtsa-frontend-local.md)
 - [Список питомцев — Backend](spisok-pitomtsev-backend.md)
 - [Список питомцев — Frontend](spisok-pitomtsev-frontend.md)
 - [Удаление питомца — Backend](udalenie-pitomtsa-backend.md)
