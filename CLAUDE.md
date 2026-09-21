@@ -214,6 +214,10 @@ An exception already established in this repository: a page may contain a short 
 
 A page may reference a work item by identifier (e.g. "см. PET-123") the same way existing pages do, as a pointer for where implementation work is tracked — that is fine. What's not fine is explaining the mechanics of that work inside the requirement text itself.
 
+## References must not point outside the repository
+
+Never write a reference (in a page, work item, or any other file here) to a resource outside this repository — a local scratch directory, a temp path, or anything else not stored in this repo. Such references go stale immediately for anyone (or any future session) reading the file without that resource. Point at another file actually in this repo instead, or inline the information.
+
 ## General editing principles
 
 Make the smallest change necessary to satisfy the user's request.
