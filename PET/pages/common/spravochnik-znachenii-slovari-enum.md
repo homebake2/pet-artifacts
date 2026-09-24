@@ -3,11 +3,11 @@ id: 247d2c19-2478-49dc-b7c7-192dbeaf4279
 title: Справочник значений (словари enum)
 workitems: []
 created_at: 2026-08-24
-updated_at: 2026-09-09
+updated_at: 2026-09-24
 ---
 Единый справочник допустимых значений для полей-перечислений (enum), используемых в требованиях Pets и Calendar. Другие страницы требований должны ссылаться на этот документ вместо того, чтобы дублировать или расплывчато описывать списки значений.
 
-## Питомцы — Вид (species / icon), 31 значение
+## Питомцы — Вид (species), 31 значение
 
 DOG, CAT, HAMSTER, GUINEA_PIG, RABBIT, PARROT, CANARY, FISH, TURTLE, RAT, MOUSE, FERRET, HEDGEHOG, CHINCHILLA, MINI_PIG, MINI_GOAT, CHICKEN, DUCK, PIGEON, IGUANA, GECKO, BEARDED_AGAMA, SNAKE, PYTHON, FROG, AXOLOTL, TARANTULA, HERMIT_CRAB, ANT_FARM, SNAIL, OTHER.
 
@@ -25,9 +25,11 @@ indoor, outside, both.
 
 ## Календарь — Тип события (event type)
 
-weight, temperature, feeding, water, activity, sleep, medication, hygiene, mood, urine, defecation, vomit, diarrhea, other.
+weight, temperature, feeding, water, activity, sleep, medication, hygiene, mood, urine, defecation, vomit, diarrhea, other, molting, egg_laying, water_quality, heat_cycle.
 
 Форма типизированного значения (`value`) по каждому типу события, а также характер значения и правила агрегации для графиков — см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md). Enum ниже — вложенные словари полей `value`; они принадлежат конкретному типу события и не применяются к другим типам.
+
+Не каждый тип события применим к каждому виду питомца из справочника видов ниже — состав видов, которым доступен конкретный тип, задан таблицей «Применимость типа события к виду питомца» на странице [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md).
 
 Словари ниже наполняются с учётом всех видов справочника видов питомцев, а не только собак и кошек: распространённые для нескольких видов случаи — отдельные значения, узкоспецифичные — значение `other` плюс пояснение в `notes` (правило см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md), раздел «Разнообразие видов и состав словарей»).
 
@@ -76,6 +78,22 @@ calm, playful, lethargic, anxious, aggressive, hiding.
 ## Календарь — Статус выделений (urine / defecation / vomit / diarrhea — value.status)
 
 normal, abnormal.
+
+## Календарь — Статус линьки (molting.status)
+
+started, stuck, completed.
+
+`started` — линька началась; `completed` — линька завершена без осложнений; `stuck` — застрявшая (неполная) линька — тревожный признак, требующий внимания владельца (типично для рептилий и линяющих беспозвоночных).
+
+## Календарь — Статус кладки (egg_laying.status)
+
+normal, abnormal.
+
+`abnormal` — осложнённая кладка (в т.ч. застрявшее яйцо) — ветеринарно значимое отклонение, а не просто заметка.
+
+## Календарь — Фаза течки (heat_cycle.phase)
+
+started, ended.
 
 ## Календарь — Интервал агрегации графика (bucket)
 
