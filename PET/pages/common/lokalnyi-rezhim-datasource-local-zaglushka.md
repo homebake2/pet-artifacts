@@ -3,7 +3,7 @@ id: f64fd998-8084-4f3c-8f7e-756de4a22055
 title: Локальный режим (dataSource=local) — целевая архитектура хранения
 parent_page: PET/pages/common/trebovaniya-obschie.md
 created_at: 2026-08-27
-updated_at: 2026-09-13
+updated_at: 2026-09-25
 ---
 ## Назначение
 
@@ -126,3 +126,4 @@ updated_at: 2026-09-13
 * [Посещения ветеринара — Frontend (dataSource=local)](../vetpassport/vizity-veterinara-frontend-local.md)
 * [Аллергии — Frontend (dataSource=local)](../vetpassport/allergii-frontend-local.md)
 * [Лекарства — Frontend (dataSource=local)](../vetpassport/lekarstva-frontend-local.md)
+* [Виджет — Frontend (dataSource=local)](../widget/vidzhet-frontend-local.md)
