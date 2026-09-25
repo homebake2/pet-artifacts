@@ -3,7 +3,7 @@ id: 98b23bdb-7951-4815-90d9-50e9948a0c43
 title: Просмотр карточки питомца — Backend
 parent_page: PET/pages/pets/index.md
 created_at: 2026-08-24
-updated_at: 2026-09-24
+updated_at: 2026-09-25
 ---
 **Смотрите также:**
 
@@ -18,6 +18,8 @@ updated_at: 2026-09-24
 * [Общие требования: Формат ошибок API](../common/obschie-trebovaniya-format-oshibok-api.md)
 
 * [События питомца — Frontend](sobytiya-pitomtsa-frontend.md) — экран, использующий `GET /pet/{id}/events` с бесконечной пагинацией и параметром `search`.
+
+* [Профильные поля питомца по видам](profilnye-polya-pitomtsa-po-vidam.md) — состав nullable-полей ответа ниже, добавленных этой правкой.
 
 ## Назначение
 
@@ -53,7 +55,7 @@ updated_at: 2026-09-24
 
 * Заголовок `LanguageCode` не является обязательным параметром — он не используется сервером для локализации ответа.
 
-* Nullable-поля ответа (согласно OpenAPI-спеке): `color`, `notes`, `gender`, `habitation` — могут отсутствовать в БД и возвращаются как `null`, а не как пустая строка. Остальные поля ответа считаются обязательными.
+* Nullable-поля ответа (согласно OpenAPI-спеке): `color`, `notes`, `gender`, `habitation`, `microchipped`, `microchip_number`, `size_category`, `ringed`, `ring_number`, `uv_lamp_required`, `water_type`, `enclosure_volume_l`, `group_size` — могут отсутствовать в БД и возвращаются как `null`, а не как пустая строка (см. «Профильные поля питомца по видам»). Остальные поля ответа считаются обязательными.
 
 * Дополнительное nullable-поле ответа `photo_url` — presigned GET URL на фотографию питомца, вычисляемый на каждый запрос заново, или `null`, если у питомца нет фотографии; подробности генерации и TTL — см. «Фотография питомца — Backend». Ответ уже отфильтрован проверкой владения из шага 3 основного сценария — отдельной повторной проверки для генерации `photo_url` не требуется.
 
