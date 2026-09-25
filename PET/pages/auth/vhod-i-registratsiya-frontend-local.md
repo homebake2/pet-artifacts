@@ -2,7 +2,6 @@
 id: 86eb08ee-9b64-4db8-93ed-a983746b4037
 title: Вход и регистрация — Frontend (dataSource=local)
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-22
 ---

@@ -2,7 +2,6 @@
 id: 27bde1fd-077e-4e39-a121-c515d993bad2
 title: Лекарства — Backend
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

@@ -2,7 +2,6 @@
 id: 04c1af58-6cd8-43c4-b519-f55c289154f5
 title: Просмотр карточки питомца — Frontend (dataSource=local)
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-10
 ---

@@ -2,7 +2,6 @@
 id: d237065c-adb6-4150-94d7-109b67f338ae
 title: Аллергии — Frontend (dataSource=local)
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

@@ -2,7 +2,6 @@
 id: 98d54633-132a-4810-8ee5-eed04c78319b
 title: Удаление питомца — Frontend (dataSource=local)
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

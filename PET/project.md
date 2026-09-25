@@ -1,24 +1,6 @@
 ---
 id: 6744232e-58a0-4267-8a32-a52917363d5c
 name: pet
-states:
-  - Backlog
-  - Todo
-  - In Progress
-  - Done
-  - Cancelled
-labels:
-  - frontend
-  - backend
-  - profile
-  - calendar
-  - pets
-  - auth
-  - concepts
-  - admin
-workitem_types:
-  - Task
-  - Epic
 ---
 
 PetHealth — мобильное приложение для учёта здоровья домашних питомцев: профиль

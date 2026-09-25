@@ -19,19 +19,8 @@ Those may require a content or metadata change instead of deleting the file.
 1. Locate the page.
 2. Read the page file.
 3. Read `.agent/invariants.md`.
-4. Read `.agent/links.md`.
-5. Search the entire repository for references to the page.
-6. Identify all work items referencing it.
-7. Identify any child pages through `parent_page`.
-
-## Work item relationships
-
-Before deleting the page:
-
-* remove it from every work item's `pages` list;
-* verify that no work item still references the page.
-
-Do not leave dangling references.
+4. Search the entire repository for references to the page.
+5. Identify any child pages through `parent_page`.
 
 ## Child pages
 

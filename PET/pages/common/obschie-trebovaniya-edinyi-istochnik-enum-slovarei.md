@@ -2,7 +2,6 @@
 id: 87898fba-e70b-41cc-a375-ecc443bde732
 title: "Общие требования: Единый источник enum-словарей"
 parent_page: PET/pages/common/trebovaniya-obschie.md
-workitems: []
 created_at: 2026-08-27
 updated_at: 2026-09-03
 ---

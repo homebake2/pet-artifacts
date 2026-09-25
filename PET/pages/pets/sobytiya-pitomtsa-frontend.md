@@ -2,7 +2,6 @@
 id: 3b80e44a-7723-4f53-8098-f94f3e057347
 title: События питомца — Frontend
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-10
 updated_at: 2026-09-10
 ---

@@ -2,7 +2,6 @@
 id: 6b9571de-9a5f-4844-b0e7-7de97a2173c4
 title: Редактирование питомца — Backend
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-24
 ---

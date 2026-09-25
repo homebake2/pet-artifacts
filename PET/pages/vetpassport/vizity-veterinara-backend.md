@@ -2,7 +2,6 @@
 id: 03ce7186-1f41-4a73-8ec1-c8821f096790
 title: Посещения ветеринара — Backend
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

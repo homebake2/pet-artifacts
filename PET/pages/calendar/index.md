@@ -1,7 +1,6 @@
 ---
 id: c697b68d-0e71-422d-b4bd-a49ebe217a99
 title: "Требования: Calendar"
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-04
 ---

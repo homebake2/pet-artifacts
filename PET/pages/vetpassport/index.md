@@ -1,7 +1,6 @@
 ---
 id: 8f49d359-b7fe-4833-9739-77b86455ee2b
 title: "Требования: Ветпаспорт"
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

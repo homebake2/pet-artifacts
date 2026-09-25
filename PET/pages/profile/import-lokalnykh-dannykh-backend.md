@@ -2,7 +2,6 @@
 id: d8ddf14a-c2e4-4d86-ae50-a92b6c23a38a
 title: Импорт локальных данных — Backend
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-09
 ---

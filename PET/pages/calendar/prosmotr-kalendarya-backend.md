@@ -2,7 +2,6 @@
 id: fc16f626-96d6-477f-9980-ea20d62ba1c9
 title: Просмотр календаря — Backend
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-10
 ---

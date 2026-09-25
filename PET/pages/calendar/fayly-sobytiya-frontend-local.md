@@ -2,7 +2,6 @@
 id: 8c9e9a99-7c8e-4c3c-a35e-63fd3351bf03
 title: Файлы события — Frontend (dataSource=local)
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-04
 updated_at: 2026-09-04
 ---

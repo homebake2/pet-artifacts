@@ -2,7 +2,6 @@
 id: eb14710f-5c99-4a0b-88d7-9aa6e7aeadf9
 title: Просмотр профиля — Backend
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

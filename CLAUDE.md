@@ -4,41 +4,34 @@ Guidance for Claude Code when working in this repository.
 
 ## Purpose
 
-This repository stores work items and requirement pages for the `pet-mono` project as plain Markdown files.
+This repository stores requirement pages for the `pet-mono` project as plain Markdown files.
 
 The repository is the local source of truth for the data stored in these files. Claude Code should read and modify the files directly rather than relying on an external tracker.
 
 This file defines repository-level rules and routes operations to the relevant instructions in `.agent/`.
 
-Detailed schema, invariants, operation-specific rules, relationship rules, validation, and query examples are stored in `.agent/`.
+Detailed schema, invariants, operation-specific rules, validation, and query examples are stored in `.agent/`.
 
 ## Repository layout
 
 <project-key>/
   project.md
-  workitems/
-    <identifier>.md
   pages/
     <flow>/
       <slug>.md
 
 Pages are grouped into subdirectories by flow (feature area), e.g. `auth/`,
 `calendar/`, `pets/`, `profile/`. Cross-cutting pages go under `common/`.
-Work items stay flat under `workitems/` — no subdirectories.
 
 The repository may contain one or more project directories.
 
 ## Instruction routing
 
-Before performing an operation on repository data, first identify:
+Before performing an operation on repository data, first identify the operation:
 
-1. the object type:
-   - work item
-   - page
-2. the operation:
-   - create
-   - edit
-   - delete
+- create
+- edit
+- delete
 
 Then read the instructions required for that operation.
 
@@ -52,20 +45,6 @@ Before creating, editing, moving, or deleting repository data, read:
 - `.agent/invariants.md`
 
 These define the data model and rules that must remain valid.
-
-### Work item operations
-
-For creating a work item, read:
-
-- `.agent/workitems/create.md`
-
-For editing a work item, read:
-
-- `.agent/workitems/edit.md`
-
-For deleting a work item, read:
-
-- `.agent/workitems/delete.md`
 
 ### Page operations
 
@@ -81,21 +60,13 @@ For deleting a page, read:
 
 - `.agent/pages/delete.md`
 
-### Relationships
-
-If the operation adds, removes, or changes a relationship between a work item and a page, also read:
-
-- `.agent/links.md`
-
-Do not read `.agent/links.md` when the operation does not affect work item/page relationships.
-
 ### Validation
 
 After creating, editing, moving, or deleting repository data, read:
 
 - `.agent/validation.md`
 
-Use it to validate the affected files and relationships before considering the operation complete.
+Use it to validate the affected files before considering the operation complete.
 
 ### Queries
 
@@ -127,39 +98,10 @@ Read:
 .agent/pages/edit.md
 .agent/validation.md
 
-If the edit changes work item/page relationships, also read:
-
-.agent/links.md
-
 Do not read:
 
 .agent/pages/create.md
 .agent/pages/delete.md
-.agent/workitems/create.md
-.agent/workitems/edit.md
-.agent/workitems/delete.md
-
-### Create a work item
-
-For:
-
-Create task PET-123.
-
-The relevant operation is:
-
-object: work item
-operation: create
-
-Read:
-
-.agent/schema.md
-.agent/invariants.md
-.agent/workitems/create.md
-.agent/validation.md
-
-If the task is linked to a requirement page, also read:
-
-.agent/links.md
 
 ### Delete a requirement page
 
@@ -177,26 +119,7 @@ Read:
 .agent/schema.md
 .agent/invariants.md
 .agent/pages/delete.md
-.agent/links.md
 .agent/validation.md
-
-## Project metadata
-
-Each project has a `project.md`.
-
-`project.md` is the authoritative source for:
-
-- valid work item states;
-- valid labels;
-- valid work item types.
-
-These values are case-sensitive.
-
-Never invent, normalize, or silently change these values.
-
-Before creating or changing a work item's `state`, `labels`, or `type`, read the relevant `<project-key>/project.md` and use only values defined there.
-
-Do not assume that enum values are the same across projects.
 
 ## Requirement pages describe target state, not migration
 
@@ -205,18 +128,13 @@ A requirement page (`pages/`) must describe the state the system is required to 
 Do not put into a requirement page:
 
 * narrative framing like "проблема" / "решение" / "было — стало" describing a change;
-* references to a change being made "в рамках PET-123" or similar transition language;
 * migration mechanics (SQL migration steps, rename/backfill procedures) as the primary content of a requirement — describe only the resulting schema/behavior if a schema/behavior fact must be stated.
-
-That information belongs in the work item (task) that implements the change. A work item description is the right place for "how to get from current state to required state" — migration steps, affected files, rollout order, dependencies between tasks.
 
 An exception already established in this repository: a page may contain a short "Известный пробел в реализации" ("known implementation gap") section when the requirement is not yet implemented and the gap itself needs tracking — this still states what's required and what's currently missing, not a change narrative. Do not use this as a template for describing arbitrary migrations; keep it to cases where a requirement genuinely isn't implemented yet.
 
-A page may reference a work item by identifier (e.g. "см. PET-123") the same way existing pages do, as a pointer for where implementation work is tracked — that is fine. What's not fine is explaining the mechanics of that work inside the requirement text itself.
-
 ## References must not point outside the repository
 
-Never write a reference (in a page, work item, or any other file here) to a resource outside this repository — a local scratch directory, a temp path, or anything else not stored in this repo. Such references go stale immediately for anyone (or any future session) reading the file without that resource. Point at another file actually in this repo instead, or inline the information.
+Never write a reference (in a page or any other file here) to a resource outside this repository — a local scratch directory, a temp path, or anything else not stored in this repo. Such references go stale immediately for anyone (or any future session) reading the file without that resource. Point at another file actually in this repo instead, or inline the information.
 
 ## General editing principles
 

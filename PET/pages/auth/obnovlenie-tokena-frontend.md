@@ -2,7 +2,6 @@
 id: 96a35fdd-32f8-4c98-9604-205679ff1835
 title: Обновление токена — Frontend
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

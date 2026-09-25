@@ -2,7 +2,6 @@
 id: 1d8221dd-6913-492e-8e4b-fc1c84d8c5fd
 title: Редактирование профиля — Backend
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

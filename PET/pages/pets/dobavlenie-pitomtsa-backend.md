@@ -2,7 +2,6 @@
 id: a506afb8-e87a-4a37-89ed-61e299d2dcd9
 title: Добавление питомца — Backend
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-24
 ---

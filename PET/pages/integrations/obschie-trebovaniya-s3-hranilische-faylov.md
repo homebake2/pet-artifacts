@@ -2,7 +2,6 @@
 id: 3978e7b8-9cb5-4149-9673-a2f05026fece
 title: "Общие требования: S3-хранилище файлов"
 parent_page: PET/pages/integrations/index.md
-workitems: []
 created_at: 2026-09-04
 updated_at: 2026-09-04
 ---

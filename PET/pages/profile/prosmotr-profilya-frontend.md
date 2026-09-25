@@ -2,7 +2,6 @@
 id: f637ea55-cf59-45f9-93a0-11b9dbb7fd36
 title: Просмотр профиля — Frontend
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-04
 ---

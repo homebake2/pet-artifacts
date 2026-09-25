@@ -2,7 +2,6 @@
 id: 417075f9-7749-41e7-abd6-a24ca75a9835
 title: Импорт из локального аккаунта — Frontend
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-04
 ---

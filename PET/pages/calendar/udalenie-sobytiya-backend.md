@@ -2,7 +2,6 @@
 id: 96aaa38b-37b1-4a81-89fb-26d52f7e28a8
 title: Удаление события — Backend
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-10
 ---

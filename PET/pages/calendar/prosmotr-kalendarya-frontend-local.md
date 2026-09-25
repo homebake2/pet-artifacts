@@ -2,7 +2,6 @@
 id: 325138e9-d999-445e-a970-25901169e515
 title: Просмотр календаря — Frontend (dataSource=local)
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

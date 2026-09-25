@@ -8,15 +8,9 @@ Verify:
 
 * YAML frontmatter is valid;
 * required fields are present;
-* work item identifiers match filenames;
-* referenced work items exist;
 * referenced pages exist;
-* parent work items exist;
 * parent pages exist;
-* no duplicate work item identifiers exist;
 * no duplicate page slugs exist within the same flow directory;
-* cross-links are bidirectional;
-* enum values are valid according to `project.md`;
 * immutable IDs were preserved;
 * `created_at` was preserved;
 * page filenames were not changed unintentionally;
@@ -30,51 +24,7 @@ For a multi-file change, validate all affected files.
 
 For operations involving renames or deletions, search the entire repository for references to the old path or identifier.
 
-## Cross-link validation
-
-For every work item:
-
-```yaml
-pages:
-  - PET/pages/example.md
-```
-
-verify that the page contains:
-
-```yaml
-workitems:
-  - PET/workitems/<workitem>.md
-```
-
-For every page:
-
-```yaml
-workitems:
-  - PET/workitems/example.md
-```
-
-verify that the work item contains:
-
-```yaml
-pages:
-  - PET/pages/<page>.md
-```
-
-## Enum validation
-
-Before changing:
-
-* `state`
-* `type`
-* `labels`
-
-read the relevant project's `project.md`.
-
-Compare values exactly, including capitalization.
-
 ## Duplicate detection
-
-Work item identifiers must be unique.
 
 Page slugs must be unique within their flow directory (e.g. each flow may
 have its own `index.md`; that is not a collision).

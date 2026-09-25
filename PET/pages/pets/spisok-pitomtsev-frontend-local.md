@@ -2,7 +2,6 @@
 id: a67c3a51-0a9c-4697-82b7-02751c9080e6
 title: Список питомцев — Frontend (dataSource=local)
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-10
 ---

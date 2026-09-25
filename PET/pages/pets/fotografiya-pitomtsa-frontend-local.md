@@ -2,7 +2,6 @@
 id: fd78cbb9-e880-4e7d-967b-437925c79885
 title: Фотография питомца — Frontend (dataSource=local)
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-04
 updated_at: 2026-09-04
 ---

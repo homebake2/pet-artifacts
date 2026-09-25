@@ -2,7 +2,6 @@
 id: f49aa8bf-97a6-44d7-ab20-5b8ec71387f5
 title: Фотография питомца — Backend
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-04
 updated_at: 2026-09-04
 ---

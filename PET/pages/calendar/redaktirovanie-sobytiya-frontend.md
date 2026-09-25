@@ -2,7 +2,6 @@
 id: 71adae48-d1d1-45d1-a341-fbf44f50de39
 title: Редактирование события — Frontend
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-24
 ---

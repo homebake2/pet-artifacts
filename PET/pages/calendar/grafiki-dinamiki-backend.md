@@ -2,7 +2,6 @@
 id: fa50f13b-2311-45a5-b881-844ac8b1d349
 title: Графики динамики — Backend
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

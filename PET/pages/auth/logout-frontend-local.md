@@ -2,7 +2,6 @@
 id: 43c607e7-0e91-4241-a27d-4e887c3a151f
 title: Logout — Frontend (dataSource=local)
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

@@ -2,7 +2,6 @@
 id: c8c08dae-09f9-4301-beb6-0ed1b8868f6d
 title: Вакцинации — Frontend
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

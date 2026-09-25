@@ -2,7 +2,6 @@
 id: 142274db-3921-44bb-beb6-38139eeb2b7c
 title: Просмотр профиля — Frontend (dataSource=local)
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

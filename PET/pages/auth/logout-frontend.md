@@ -2,7 +2,6 @@
 id: 3ea10d10-abfc-402e-b2ed-a45ef94e9c81
 title: Logout — Frontend
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

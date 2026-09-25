@@ -2,7 +2,6 @@
 id: 4e14f60c-9dbe-49e5-b653-d1349a2d4fc3
 title: "Общие требования: Формат ошибок API"
 parent_page: PET/pages/common/trebovaniya-obschie.md
-workitems: []
 created_at: 2026-08-27
 updated_at: 2026-09-03
 ---

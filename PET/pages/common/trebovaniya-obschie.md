@@ -1,7 +1,6 @@
 ---
 id: 7cf47e6c-ba76-4ada-97f6-15cbd22a5904
 title: "Требования: Общие"
-workitems: []
 created_at: 2026-08-27
 updated_at: 2026-09-03
 ---

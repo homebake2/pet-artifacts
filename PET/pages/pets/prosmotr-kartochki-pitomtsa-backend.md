@@ -2,7 +2,6 @@
 id: 98b23bdb-7951-4815-90d9-50e9948a0c43
 title: Просмотр карточки питомца — Backend
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-24
 ---

@@ -1,7 +1,6 @@
 ---
 id: 247d2c19-2478-49dc-b7c7-192dbeaf4279
 title: Справочник значений (словари enum)
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-24
 ---

@@ -2,7 +2,6 @@
 id: 2f45d877-fdc6-48ef-ac97-dd0d2052920c
 title: Кондиция — Frontend (dataSource=local)
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

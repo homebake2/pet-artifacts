@@ -2,7 +2,6 @@
 id: 82115051-3921-4526-92ce-dc6a405ecf95
 title: Вход и регистрация — Backend
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-22
 ---

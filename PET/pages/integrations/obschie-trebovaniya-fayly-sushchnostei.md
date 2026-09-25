@@ -2,7 +2,6 @@
 id: 307f25f3-6366-4d4e-a5e8-20a4a3aada4e
 title: "Общие требования: Файлы сущностей"
 parent_page: PET/pages/integrations/index.md
-workitems: []
 created_at: 2026-09-04
 updated_at: 2026-09-09
 ---

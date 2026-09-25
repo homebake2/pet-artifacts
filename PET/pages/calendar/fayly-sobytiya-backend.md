@@ -2,7 +2,6 @@
 id: bcc318cd-b4b9-4e6e-8916-36c424a1d496
 title: Файлы события — Backend
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-04
 updated_at: 2026-09-04
 ---

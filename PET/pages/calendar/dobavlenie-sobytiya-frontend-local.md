@@ -2,7 +2,6 @@
 id: 4a17c617-4401-4512-a335-b08e5efa6522
 title: Добавление события — Frontend (dataSource=local)
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

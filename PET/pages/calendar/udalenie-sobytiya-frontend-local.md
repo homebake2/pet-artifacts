@@ -2,7 +2,6 @@
 id: eeee1b90-82f3-45e7-9b7f-d299bad5db16
 title: Удаление события — Frontend (dataSource=local)
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

@@ -2,8 +2,6 @@
 id: 05439ec5-4091-4bd6-95a9-a79cfcb43ef7
 title: Модель значения события и реестр метрик
 parent_page: PET/pages/common/trebovaniya-obschie.md
-workitems:
-  - PET/workitems/PET-1.md
 created_at: 2026-09-03
 updated_at: 2026-09-24
 ---

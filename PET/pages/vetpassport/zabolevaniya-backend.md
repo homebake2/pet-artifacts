@@ -2,7 +2,6 @@
 id: ee859f36-e19a-4525-aace-dd19d1162e71
 title: Заболевания — Backend
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

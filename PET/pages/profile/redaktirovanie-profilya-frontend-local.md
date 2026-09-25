@@ -2,7 +2,6 @@
 id: 0b3e79e2-ed98-4f04-b0b6-07a28b5e469a
 title: Редактирование профиля — Frontend (dataSource=local)
 parent_page: PET/pages/profile/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

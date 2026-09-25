@@ -2,7 +2,6 @@
 id: c17b7d00-7eb8-4d34-a8a2-39ba71d6a83d
 title: "Общие требования: UI-паттерны запросов"
 parent_page: PET/pages/common/trebovaniya-obschie.md
-workitems: []
 created_at: 2026-08-27
 updated_at: 2026-09-03
 ---

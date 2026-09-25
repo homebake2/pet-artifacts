@@ -2,7 +2,6 @@
 id: d07b0dc2-64b6-495f-9106-9ad9bf4822a9
 title: Список питомцев — Frontend
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-24
 ---

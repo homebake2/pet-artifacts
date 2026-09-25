@@ -2,7 +2,6 @@
 id: bba959c8-30f0-4df4-a9d9-c4ee884a4bb3
 title: Обновление токена — Frontend (dataSource=local)
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

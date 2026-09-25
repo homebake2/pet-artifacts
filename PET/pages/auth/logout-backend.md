@@ -2,7 +2,6 @@
 id: 76aed32d-5121-4e45-ada3-45edd6cba288
 title: Logout — Backend
 parent_page: PET/pages/auth/index.md
-workitems: []
 created_at: 2026-08-24
 updated_at: 2026-09-03
 ---

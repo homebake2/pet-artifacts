@@ -2,7 +2,6 @@
 id: 5537a151-7467-441d-b69f-b240c0228199
 title: Редактирование питомца — Frontend (dataSource=local)
 parent_page: PET/pages/pets/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-08
 ---

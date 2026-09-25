@@ -2,7 +2,6 @@
 id: 84e60490-9ab0-481c-bade-1c63f55b4fdb
 title: Графики динамики — Frontend (dataSource=local)
 parent_page: PET/pages/calendar/index.md
-workitems: []
 created_at: 2026-09-03
 updated_at: 2026-09-03
 ---

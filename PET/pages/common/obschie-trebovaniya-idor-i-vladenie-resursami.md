@@ -2,7 +2,6 @@
 id: 379b9469-5e17-4c7e-b614-42bb4cb45772
 title: "Общие требования: IDOR и владение ресурсами"
 parent_page: PET/pages/common/trebovaniya-obschie.md
-workitems: []
 created_at: 2026-08-27
 updated_at: 2026-09-03
 ---

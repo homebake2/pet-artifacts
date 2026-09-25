@@ -2,7 +2,6 @@
 id: 66a1e5ad-d023-466e-8168-49f4d1dfda9c
 title: Посещения ветеринара — Frontend (dataSource=local)
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

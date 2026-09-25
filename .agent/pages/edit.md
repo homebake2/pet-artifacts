@@ -8,7 +8,6 @@ Use this document only when editing an existing requirement page.
 2. Read the existing page.
 3. Read `.agent/schema.md`.
 4. Read `.agent/invariants.md`.
-5. If changing relationships, read `.agent/links.md`.
 
 ## Immutable fields
 
@@ -59,17 +58,6 @@ If changing `parent_page`:
 1. Verify the new parent exists.
 2. Verify that the change does not create a circular hierarchy.
 3. Use a repository-root-relative path.
-
-## Work item relationships
-
-If changing `workitems`:
-
-1. Read `.agent/links.md`.
-2. Verify all referenced work items exist.
-3. Update corresponding work item `pages` fields.
-4. Perform both sides in the same operation.
-
-Never leave a one-sided relationship.
 
 ## Content
 

@@ -2,7 +2,6 @@
 id: 562269f2-09db-4d04-bbca-a2fe3f62ad20
 title: Заболевания — Frontend
 parent_page: PET/pages/vetpassport/index.md
-workitems: []
 created_at: 2026-09-09
 updated_at: 2026-09-09
 ---

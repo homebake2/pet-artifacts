@@ -2,7 +2,6 @@
 id: 1f8de04f-e942-4098-a569-94e3f9854d55
 title: "Общие требования: Сессия, 401 и авто-refresh токена"
 parent_page: PET/pages/common/trebovaniya-obschie.md
-workitems: []
 created_at: 2026-08-27
 updated_at: 2026-09-03
 ---
