@@ -18,12 +18,6 @@ male, female, other.
 
 indoor, outside, both.
 
-## Питомцы — Размерная категория (size_category)
-
-small, medium, large.
-
-Профильное поле группы видов «Млекопитающие» — см. [Профильные поля питомца по видам](../pets/profilnye-polya-pitomtsa-po-vidam.md).
-
 ## Питомцы — Тип воды (water_type)
 
 freshwater, saltwater.

@@ -55,7 +55,7 @@ updated_at: 2026-09-25
 
 * Заголовок `LanguageCode` не является обязательным параметром — он не используется сервером для локализации ответа.
 
-* Nullable-поля ответа (согласно OpenAPI-спеке): `color`, `notes`, `gender`, `habitation`, `microchipped`, `microchip_number`, `size_category`, `ringed`, `ring_number`, `uv_lamp_required`, `water_type`, `enclosure_volume_l`, `group_size` — могут отсутствовать в БД и возвращаются как `null`, а не как пустая строка (см. «Профильные поля питомца по видам»). Остальные поля ответа считаются обязательными.
+* Nullable-поля ответа (согласно OpenAPI-спеке): `color`, `notes`, `gender`, `habitation`, `microchipped`, `microchip_number`, `ringed`, `ring_number`, `uv_lamp_required`, `water_type`, `enclosure_volume_l`, `group_size` — могут отсутствовать в БД и возвращаются как `null`, а не как пустая строка (см. «Профильные поля питомца по видам»). Остальные поля ответа считаются обязательными.
 
 * Дополнительное nullable-поле ответа `photo_url` — presigned GET URL на фотографию питомца, вычисляемый на каждый запрос заново, или `null`, если у питомца нет фотографии; подробности генерации и TTL — см. «Фотография питомца — Backend». Ответ уже отфильтрован проверкой владения из шага 3 основного сценария — отдельной повторной проверки для генерации `photo_url` не требуется.
 
