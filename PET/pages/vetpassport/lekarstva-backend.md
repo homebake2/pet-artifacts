@@ -3,7 +3,7 @@ id: 27bde1fd-077e-4e39-a121-c515d993bad2
 title: Лекарства — Backend
 parent_page: PET/pages/vetpassport/index.md
 created_at: 2026-09-09
-updated_at: 2026-09-09
+updated_at: 2026-10-06
 ---
 ## Смотрите также
 
@@ -34,11 +34,12 @@ CREATE TABLE medication (
   frequency_type    text NOT NULL,        -- 'daily' | 'specific_days' | 'every_n_days' | 'as_needed'
   weekdays          jsonb NULL,            -- массив int 1..7 (пн=1 .. вс=7), только при frequency_type = 'specific_days', иначе NULL
   interval_days     integer NULL,          -- 2..365, только при frequency_type = 'every_n_days', иначе NULL
-  times             jsonb NULL,            -- [{time: 'HH:mm', dose_note: text|null}], 1..4 элемента; NULL при frequency_type = 'as_needed'
+  times             jsonb NULL,            -- [{time: 'HH:MM[:SS]', dose_note: text|null}], 1..4 элемента; NULL при frequency_type = 'as_needed'
   start_date        date NULL,             -- обязателен при любом frequency_type, кроме 'as_needed'; NULL при 'as_needed'
   end_date          date NULL,             -- NULL = курс без определённой даты окончания ("бессрочно"); NULL всегда при 'as_needed'
   event_ids         jsonb NOT NULL DEFAULT '[]',  -- массив event.id, не более 60 элементов
   note              text NULL,             -- ≤ 1000 символов
+  idempotency_key   text NULL,             -- Idempotency-Key запроса создания; уникален на пару (pet_id, idempotency_key) среди строк с ключом
   deleted_at        timestamptz NULL,
   created_at        timestamptz NOT NULL DEFAULT now(),
   updated_at        timestamptz NOT NULL DEFAULT now()
@@ -63,7 +64,7 @@ CREATE TABLE medication (
    * достигнут потолок в 60 сгенерированных событий (см. «Потолок числа генерируемых событий» ниже) — считая по всем времени-слотам сразу, а не по количеству дат;
    * без `end_date` и без совпадающих дат в пределах 730 дней от `start_date` (только теоретический случай защиты от бесконечного перебора при некорректных входных данных — на валидных `weekdays`/`interval_days` такое недостижимо).
 
-3. Для каждой входящей в расписание даты `d`, для каждого элемента `times` (в порядке следования массива) создаётся одно событие: `type = medication`, `value = {name: <medication.name>}` (`dose_amount`/`dose_unit` не передаются — дозировка лекарства в Ветпаспорте свободный текст, а не структурированные число+единица, которых требует форма `value.dose_amount`/`value.dose_unit`, см. «Модель значения события и реестр метрик»), `notes = <times[i].dose_note либо, если он не задан, medication.dosage>` (доза попадает в заметку события, чтобы карточка события в календаре была самодостаточной), `date = d` + `times[i].time`, привязанное к тому же питомцу.
+3. Для каждой входящей в расписание даты `d`, для каждого элемента `times` (в порядке следования массива) создаётся одно событие: `type = medication`, `value = {name: <medication.name>}` (`dose_amount`/`dose_unit` не передаются — дозировка лекарства в Ветпаспорте свободный текст, а не структурированные число+единица, которых требует форма `value.dose_amount`/`value.dose_unit`, см. «Модель значения события и реестр метрик»), `notes = <times[i].dose_note либо, если он не задан, medication.dosage>` (доза попадает в заметку события, чтобы карточка события в календаре была самодостаточной), `date = d` + `times[i].time` как местное время часового пояса клиента (query-параметр `tz` запроса, см. «Бизнес-правила»), привязанное к тому же питомцу.
 
 Даты и времена расписания создаются целиком (включая события в прошлом относительно текущей даты), независимо от того, лежат ли они в прошлом или в будущем, — как и раньше, расписание не фильтруется по «только будущее».
 
@@ -73,21 +74,21 @@ CREATE TABLE medication (
 
 ## Основной сценарий
 
-**Список.** `GET /pet/{id}/medications` — неудалённые лекарства питомца, отсортированные по ближайшему будущему `next_dose` (см. «Вычисление next_dose» ниже; лекарства с `next_dose = null`, включая все `as_needed`, — в конце), затем — по `created_at` убыв. Элемент — `MedicationResponse`: `id`, `name`, `dosage`, `frequency_type`, `weekdays`, `interval_days`, `times`, `next_dose` (вычисляемые дата+время ближайшего будущего/текущего приёма, `null` — см. ниже), `has_events` (`event_ids` не пуст), `files_count`.
+**Список.** `GET /pet/{id}/medications` — неудалённые лекарства питомца, отсортированные по ближайшему будущему `next_dose` (см. «Вычисление next_dose» ниже; лекарства с `next_dose = null`, включая все `as_needed`, — в конце), затем — по `created_at` убыв. Элемент — `GetMedicationResponse`: `id`, `pet_id`, `name`, `dosage`, `frequency_type`, `weekdays`, `interval_days`, `times`, `start_date`, `end_date`, `note`, `event_ids` (id событий расписания; пустой массив, если набор событий не создан), `next_dose` (вычисляемые дата+время ближайшего будущего/текущего приёма, `null` — см. ниже), `files_count`. Признак «есть набор событий» — `event_ids` не пуст. Опциональный query-параметр `tz` — часовой пояс, в котором вычисляется `next_dose`.
 
-**Создание.** `POST /pet/{id}/medications`. Тело: `name` (обязательно, ≤100), `dosage` (обязательно, ≤100), `frequency_type` (обязательно, одно из `daily`/`specific_days`/`every_n_days`/`as_needed`), `weekdays` (массив int 1..7, без повторов, минимум 1 элемент — обязателен, если и только если `frequency_type = specific_days`), `interval_days` (целое 2..365 — обязателен, если и только если `frequency_type = every_n_days`), `times` (массив 1..4 элементов `{time: HH:mm, dose_note?: ≤100}`, времена без повторов — обязателен, если и только если `frequency_type != as_needed`), `start_date` (`YYYY-MM-DD` — обязателен, если и только если `frequency_type != as_needed`), `end_date` (`YYYY-MM-DD`, опционально, только если `frequency_type != as_needed`; если задан — должен быть `>= start_date`), `note` (опционально, ≤1000), `add_event` (boolean, по умолчанию `false`; недопустим/игнорируется при `frequency_type = as_needed`). Опциональный `Idempotency-Key`.
+**Создание.** `POST /pet/{id}/medications`. Тело: `name` (обязательно, ≤100), `dosage` (обязательно, ≤100), `frequency_type` (обязательно, одно из `daily`/`specific_days`/`every_n_days`/`as_needed`), `weekdays` (массив int 1..7, без повторов, минимум 1 элемент — обязателен, если и только если `frequency_type = specific_days`), `interval_days` (целое 2..365 — обязателен, если и только если `frequency_type = every_n_days`), `times` (массив 1..4 элементов `{time: HH:MM или HH:MM:SS (OpenAPI format: time), dose_note?: ≤100}`, времена без повторов — обязателен, если и только если `frequency_type != as_needed`), `start_date` (`YYYY-MM-DD` — обязателен, если и только если `frequency_type != as_needed`), `end_date` (`YYYY-MM-DD`, опционально, только если `frequency_type != as_needed`; если задан — должен быть `>= start_date`), `note` (опционально, ≤1000), `add_event` (boolean, по умолчанию `false`; недопустим/игнорируется при `frequency_type = as_needed`). Опциональный query-параметр `tz` — часовой пояс расписания. Опциональный заголовок `Idempotency-Key` (UUID v4, иначе `400`): ключ хранится в строке записи и уникален на пару `(pet_id, idempotency_key)`; повторный запрос с тем же ключом для того же питомца не создаёт новую запись, а возвращает `201 Created` с `id` ранее созданной — в том числе при одновременных запросах с одним ключом и когда созданная запись уже мягко удалена (удаление не освобождает ключ).
 
 1. Проверка владения питомцем (см. «Бизнес-правила»).
 2. Валидация полей, включая согласованность набора полей с `frequency_type` (см. «Бизнес-правила»).
 3. Вставка строки `medication`.
 4. Если `add_event = true` — расчёт расписания (см. выше), вставка до 60 строк `event`, запись их `id` в `event_ids`.
-5. `201 Created` с `MedicationDetailResponse` (все поля строки + `files`).
+5. `201 Created` с телом `{id}` — идентификатором созданного лекарства.
 
-**Ручное создание набора событий** (кнопка «Добавить событие» на карточке). `POST /medications/{id}/events`, без тела. Доступно только если `event_ids` пуст и `frequency_type != as_needed` — иначе `409 Conflict` (набор уже существует) либо `400` (у `as_needed`-лекарства нет расписания). Выполняет расчёт расписания по текущим `frequency_type`/`weekdays`/`interval_days`/`times`/`start_date`/`end_date` лекарства и создаёт события тем же способом, что шаг 4 создания. `200 OK` с обновлённым `MedicationDetailResponse`.
+**Ручное создание набора событий** (кнопка «Добавить событие» на карточке). `POST /medications/{id}/events`, без тела; опциональный query-параметр `tz` — часовой пояс расписания. Доступно только если `event_ids` пуст и `frequency_type != as_needed` — иначе `409 Conflict` (набор уже существует) либо `400` (у `as_needed`-лекарства нет расписания). Выполняет расчёт расписания по текущим `frequency_type`/`weekdays`/`interval_days`/`times`/`start_date`/`end_date` лекарства и создаёт события тем же способом, что шаг 4 создания. `200 OK` с обновлённым `GetMedicationResponse` — теми же полями, что у элемента списка (включая `event_ids` и `files_count`; списка `files` в ответе нет).
 
 **Ручное удаление набора событий** (кнопка «Удалить события» на карточке). `DELETE /medications/{id}/events`. Требует, чтобы `event_ids` не был пуст — иначе `404`. Жёстко удаляет (физическое `DELETE`, не soft-delete) все строки `event`, чьи `id` перечислены в `event_ids` (см. «Исключение из правила soft-delete» ниже), очищает `event_ids` до `[]`. `204 No Content`.
 
-**Редактирование.** `PATCH /medications/{id}`. Тело — частичное: любое из `name`, `dosage`, `frequency_type`, `weekdays`, `interval_days`, `times`, `start_date`, `end_date`, `note`, плюс `regenerate_events` (boolean, по умолчанию `false`, см. ниже).
+**Редактирование.** `PATCH /medications/{id}`. Тело — частичное: любое из `name`, `dosage`, `frequency_type`, `weekdays`, `interval_days`, `times`, `start_date`, `end_date`, `note`, плюс `regenerate_events` (boolean, по умолчанию `false`, см. ниже); опциональный query-параметр `tz` — часовой пояс расписания для пересоздаваемых событий. `note` очищается пустой строкой `""`; отсутствие поля или `null` — значение не меняется.
 
 1. Если запрос меняет хотя бы одно из «полей расписания» — `frequency_type`/`weekdays`/`interval_days`/`times`/`start_date`/`end_date` (поле присутствует в теле и отличается от текущего значения) **и** `event_ids` лекарства на момент запроса не пуст:
    * если `regenerate_events = true` (клиент уже показал пользователю диалог подтверждения и получил согласие, см. «Лекарства — Frontend») — сервер жёстко удаляет старые события по прежним `event_ids` (см. «Исключение из правила soft-delete»), затем пересчитывает расписание уже по новым значениям полей (с учётом изменений из этого же запроса) и создаёт новый набор событий, записывая новые `id` в `event_ids`;
@@ -117,17 +118,19 @@ CREATE TABLE medication (
 
 * Расписание пересчитывается только явными действиями (создание с `add_event=true`, `POST .../events`, регенерация с `regenerate_events=true`) — простое изменение `name`/`dosage`/`note` никогда не создаёт, не удаляет и не пересчитывает события.
 
+* **Часовой пояс расписания.** `GET /pet/{id}/medications`, `POST /pet/{id}/medications`, `PATCH /medications/{id}` и `POST /medications/{id}/events` принимают опциональный query-параметр `tz` — имя часового пояса IANA (например, `Europe/Moscow`), по умолчанию UTC. Даты расписания и `times` трактуются как местное время этого пояса: события приёма создаются на соответствующий момент времени, `next_dose` вычисляется так же. Неизвестное имя пояса — `400`.
+
 * Питомец должен принадлежать инициатору и не быть мягко удалён — иначе `404`/`400`.
 
 ## Вычисление `next_dose`
 
-`next_dose` в `MedicationResponse`/`MedicationDetailResponse` — минимальный момент (дата + время) из расписания (см. «Расчёт расписания»), который `>= текущий момент`, вычисленный по текущим `frequency_type`/`weekdays`/`interval_days`/`times`/`start_date`/`end_date` лекарства — независимо от того, создан ли фактический набор событий (`event_ids`). Время, а не только дата, участвует в сравнении: если сегодняшняя дата входит в расписание, но все времена приёма на сегодня уже прошли, `next_dose` — первый приём ближайшей следующей подходящей даты. `next_dose = null`, если: `frequency_type = as_needed`, либо все моменты расписания раньше текущего (актуально для лекарств с `end_date` в прошлом). Соответствующий блок на карточке не показывается, если `next_dose = null` (см. «Лекарства — Frontend»).
+`next_dose` в `GetMedicationResponse` — минимальный момент (дата + время) из расписания (см. «Расчёт расписания»), который `>= текущий момент`, вычисленный по текущим `frequency_type`/`weekdays`/`interval_days`/`times`/`start_date`/`end_date` лекарства — независимо от того, создан ли фактический набор событий (`event_ids`). Даты расписания и `times` — местное время пояса `tz` запроса: «сегодня» определяется по текущему моменту в этом поясе. Время, а не только дата, участвует в сравнении: если сегодняшняя дата входит в расписание, но все времена приёма на сегодня уже прошли, `next_dose` — первый приём ближайшей следующей подходящей даты. `next_dose = null`, если: `frequency_type = as_needed`, либо все моменты расписания раньше текущего (актуально для лекарств с `end_date` в прошлом). Соответствующий блок на карточке не показывается, если `next_dose = null` (см. «Лекарства — Frontend»).
 
 ## Обработка ошибок
 
 | Статус | Условие |
 | --- | --- |
-| 400 | Не заполнено обязательное поле / дата не `YYYY-MM-DD` / элемент `times` не `HH:mm` / нарушено правило согласованности полей расписания с `frequency_type` (см. «Бизнес-правила») / `weekdays` вне 1..7 или с повторами / `interval_days` вне 2..365 / `times` не 1..4 элемента или с повторяющимся временем / `end_date` раньше `start_date` / `add_event=true` или `POST .../events` при `frequency_type=as_needed` |
+| 400 | Не заполнено обязательное поле / дата не `YYYY-MM-DD` / элемент `times[].time` не `HH:MM[:SS]` / нарушено правило согласованности полей расписания с `frequency_type` (см. «Бизнес-правила») / `weekdays` вне 1..7 или с повторами / `interval_days` вне 2..365 / `times` не 1..4 элемента или с повторяющимся временем / `end_date` раньше `start_date` / `add_event=true` или `POST .../events` при `frequency_type=as_needed` / неизвестный часовой пояс `tz` / `Idempotency-Key` не UUID v4 |
 | 401 | Токен отсутствует или недействителен |
 | 404 | Питомец/лекарство не найдены, мягко удалены или принадлежат другому пользователю / `DELETE .../events`, когда `event_ids` уже пуст |
 | 409 | `POST /medications/{id}/events`, когда `event_ids` уже не пуст (сначала нужно удалить существующий набор) |

@@ -3,7 +3,7 @@ id: ee859f36-e19a-4525-aace-dd19d1162e71
 title: Заболевания — Backend
 parent_page: PET/pages/vetpassport/index.md
 created_at: 2026-09-09
-updated_at: 2026-09-09
+updated_at: 2026-10-06
 ---
 ## Смотрите также
 
@@ -33,6 +33,7 @@ CREATE TABLE disease (
   diagnosed_date   date NOT NULL,
   status           text NOT NULL,     -- 'active' | 'cured', см. справочник
   note             text NULL,         -- ≤ 1000 символов
+  idempotency_key  text NULL,         -- Idempotency-Key запроса создания; уникален на пару (pet_id, idempotency_key) среди строк с ключом
   deleted_at       timestamptz NULL,
   created_at       timestamptz NOT NULL DEFAULT now(),
   updated_at       timestamptz NOT NULL DEFAULT now()
@@ -47,7 +48,7 @@ CREATE TABLE disease (
 
 **Список.** `GET /pet/{id}/diseases` — неудалённые заболевания питомца, отсортированные по `diagnosed_date` убыв. Элемент — `DiseaseResponse`: `id`, `name`, `diagnosed_date`, `status`, `note`, `files_count`.
 
-**Создание.** `POST /pet/{id}/diseases`. Тело: `name` (обязательно, ≤100), `diagnosed_date` (обязательно, `YYYY-MM-DD`), `status` (обязательно, `active`/`cured`), `note` (опционально, ≤1000). Опциональный `Idempotency-Key` — тот же механизм, что у событий/вакцинаций. Возвращает `201 Created` с `DiseaseDetailResponse` (все поля + `files`).
+**Создание.** `POST /pet/{id}/diseases`. Тело: `name` (обязательно, ≤100), `diagnosed_date` (обязательно, `YYYY-MM-DD`), `status` (обязательно, `active`/`cured`), `note` (опционально, ≤1000). Опциональный заголовок `Idempotency-Key` (UUID v4, иначе `400`): ключ хранится в строке записи и уникален на пару `(pet_id, idempotency_key)`; повторный запрос с тем же ключом для того же питомца не создаёт новую запись, а возвращает `201 Created` с `id` ранее созданной — в том числе при одновременных запросах с одним ключом и когда созданная запись уже мягко удалена (удаление не освобождает ключ). Возвращает `201 Created` с телом `{id}` — идентификатором созданного заболевания.
 
 **Редактирование.** `PATCH /diseases/{id}` — частичное обновление любого из `name`, `diagnosed_date`, `status`, `note`. `204 No Content`.
 
@@ -67,7 +68,7 @@ CREATE TABLE disease (
 
 | Статус | Условие |
 | --- | --- |
-| 400 | Не заполнено обязательное поле / `diagnosed_date` не `YYYY-MM-DD` / `status` не из справочника / `name` длиннее 100 / `note` длиннее 1000 |
+| 400 | Не заполнено обязательное поле / `diagnosed_date` не `YYYY-MM-DD` / `status` не из справочника / `name` длиннее 100 / `note` длиннее 1000 / `Idempotency-Key` не UUID v4 |
 | 401 | Токен отсутствует или недействителен |
 | 404 | Питомец/заболевание не найдены, мягко удалены или принадлежат другому пользователю |
 | 500 | Внутренняя ошибка БД |

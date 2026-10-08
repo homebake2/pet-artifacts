@@ -132,6 +132,10 @@ Do not put into a requirement page:
 
 An exception already established in this repository: a page may contain a short "Известный пробел в реализации" ("known implementation gap") section when the requirement is not yet implemented and the gap itself needs tracking — this still states what's required and what's currently missing, not a change narrative. Do not use this as a template for describing arbitrary migrations; keep it to cases where a requirement genuinely isn't implemented yet.
 
+## Requirement pages describe capabilities, not concrete design
+
+A requirement page must describe capabilities and behavior, not concrete UI design. Do not prescribe icons, swipe/long-press or other gestures, specific controls (buttons, checkboxes, dropdowns, banners, snackbars), colors or screen positions. State the capability instead, using the wording "Имеется возможность …" (e.g. "Имеется возможность удалить запись", "Имеется возможность открыть форму редактирования"), and keep the behavioral rules attached to it (confirmations, availability conditions, outcomes). The cross-cutting UI-patterns pages may name the patterns they define; entity pages should refer to capabilities or to those patterns, not to gestures and icons.
+
 ## References must not point outside the repository
 
 Never write a reference (in a page or any other file here) to a resource outside this repository — a local scratch directory, a temp path, or anything else not stored in this repo. Such references go stale immediately for anyone (or any future session) reading the file without that resource. Point at another file actually in this repo instead, or inline the information.
