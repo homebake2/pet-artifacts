@@ -2,7 +2,7 @@
 id: c697b68d-0e71-422d-b4bd-a49ebe217a99
 title: "Требования: Calendar"
 created_at: 2026-08-24
-updated_at: 2026-09-04
+updated_at: 2026-10-09
 ---
 
 ## Страницы
@@ -14,6 +14,9 @@ updated_at: 2026-09-04
 - [Файлы события — Frontend (dataSource=local)](fayly-sobytiya-frontend-local.md)
 - [Графики динамики — Backend](grafiki-dinamiki-backend.md)
 - [Графики динамики — Frontend](grafiki-dinamiki-frontend.md)
+- [Напоминания — Backend](napominaniya-backend.md)
+- [Напоминания — Frontend](napominaniya-frontend.md)
+- [Напоминания — Frontend (dataSource=local)](napominaniya-frontend-local.md)
 - [Просмотр календаря — Backend](prosmotr-kalendarya-backend.md)
 - [Просмотр календаря — Frontend](prosmotr-kalendarya-frontend.md)
 - [Редактирование события — Backend](redaktirovanie-sobytiya-backend.md)

@@ -3,7 +3,7 @@ id: f64fd998-8084-4f3c-8f7e-756de4a22055
 title: Локальный режим (dataSource=local) — целевая архитектура хранения
 parent_page: PET/pages/common/trebovaniya-obschie.md
 created_at: 2026-08-27
-updated_at: 2026-10-06
+updated_at: 2026-10-09
 ---
 ## Назначение
 
@@ -25,7 +25,9 @@ updated_at: 2026-10-06
 | Заболевания | Объекты `Disease` — см. [Заболевания — Frontend (dataSource=local)](../vetpassport/zabolevaniya-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
 | Посещения ветеринара | Объекты `VetVisit` — см. [Посещения ветеринара — Frontend (dataSource=local)](../vetpassport/vizity-veterinara-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
 | Аллергии | Объекты `Allergy` — см. [Аллергии — Frontend (dataSource=local)](../vetpassport/allergii-frontend-local.md) | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
-| Лекарства | Объекты `Medication` — см. [Лекарства — Frontend (dataSource=local)](../vetpassport/lekarstva-frontend-local.md); единственная коллекция, где удаление связанных записей коллекции «События» физическое, а не мягкое — см. раздел «Исключение из правила soft-delete» на «Лекарства — Backend» | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Лекарства | Объекты `Medication` — см. [Лекарства — Frontend (dataSource=local)](../vetpassport/lekarstva-frontend-local.md); набор напоминаний лекарства хранится в коллекциях «Настройки напоминаний» и «Напоминания» и удаляется физически, а не мягко — см. раздел «Исключение из правила soft-delete» на «Лекарства — Backend» | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Настройки напоминаний | Объекты `ReminderPlan` — см. [Напоминания — Frontend (dataSource=local)](../calendar/napominaniya-frontend-local.md); удаление физическое | `id` (UUID) | по `ownerId`, вторичный доступ по `petId` |
+| Напоминания | Объекты `Reminder` (по одному на каждое время настроек) — см. [Напоминания — Frontend (dataSource=local)](../calendar/napominaniya-frontend-local.md); удаление физическое | `id` (UUID) | по `ownerId`, вторичный доступ по `planId` |
 | Профили | Объекты `UserData` (ФИО, email, телефон) | `ownerId` | по `ownerId` |
 | Настройки приложения | Тема, язык, выбранный `dataSource` | — (единственная запись) | — |
 

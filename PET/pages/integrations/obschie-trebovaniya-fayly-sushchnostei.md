@@ -3,7 +3,7 @@ id: 307f25f3-6366-4d4e-a5e8-20a4a3aada4e
 title: "Общие требования: Файлы сущностей"
 parent_page: PET/pages/integrations/index.md
 created_at: 2026-09-04
-updated_at: 2026-09-09
+updated_at: 2026-10-10
 ---
 ## Смотрите также
 
@@ -33,7 +33,7 @@ CREATE TABLE file (
   owner_type    text NOT NULL,        -- см. «Реестр типов владельцев»
   owner_id      uuid NOT NULL,        -- id владеющей сущности (pet.id и т.п.)
   user_id       uuid NOT NULL,        -- владелец файла, из токена на момент выдачи upload-url
-  object_key    text NOT NULL,        -- ключ объекта в S3, вида "{owner_type}/{owner_id}/{file.id}"
+  object_key    text NOT NULL,        -- ключ объекта в S3; у загруженной строки — "{owner_type}/{owner_id}/{file.id}", у ссылочной строки (см. ниже) — ключ того же объекта, что у исходной
   content_type  text NOT NULL,
   filename      text NULL,           -- исходное имя файла, как выбрано пользователем; см. ниже
   position      integer NULL,         -- порядок в галерее; NULL для типов с кардинальностью "ровно 1", неотрицательное целое (0, 1, 2, ...) для типов с кардинальностью "до N"
@@ -41,6 +41,8 @@ CREATE TABLE file (
   created_at    timestamptz NOT NULL DEFAULT now()
 );
 ```
+
+**Ссылочная строка.** Сервер может создать новую подтверждённую строку `file` для другого владельца (другой `owner_type`/`owner_id`), указывающую на уже существующий объект: она получает тот же `object_key`, `content_type` и `filename`, новый `id`, свой `position`, `confirmed_at = now()`; объект в S3 при этом не создаётся и не копируется. Так файлы настроек напоминания достаются создаваемому из напоминания факту, не дублируясь в хранилище (см. [Напоминания — Backend](../calendar/napominaniya-backend.md), раздел «Файлы»). Строки, указывающие на один объект, независимы по владельцу, порядку и удалению; объект S3 удаляется только вместе с последней из них (см. «Удаление файла»).
 
 Строка с `confirmed_at IS NULL` — не готовый к использованию файл (presigned PUT URL выдан, но не подтверждено, что байты реально загружены в S3). Такие строки НЕ ДОЛЖНЫ учитываться ни при чтении файлов сущности, ни при подсчёте кардинальности (см. ниже) — они существуют только для того, чтобы шаг «Подтверждение загрузки» мог найти запись по `file_id` и повторно проверить владение.
 
@@ -54,6 +56,8 @@ CREATE TABLE file (
 | --- | --- | --- | --- | --- |
 | `pet_photo` | Питомец (`pet`) | ровно 1 | `pet.id = owner_id AND pet.user_id = userID AND pet.deleted_at IS NULL` | `image/jpeg`, `image/png`, `image/webp` |
 | `event_file` | Событие (`event`) | до 10 | `event.id = owner_id AND event.deleted_at IS NULL AND EXISTS (SELECT 1 FROM pet WHERE pet.id = event.pet_id AND pet.user_id = userID AND pet.deleted_at IS NULL)` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `reminder_plan_file` | Настройки напоминания (`reminder_plan`), см. [Напоминания — Backend](../calendar/napominaniya-backend.md) | до 10 (с суммарным ограничением, см. там же) | настройки существуют и принадлежат питомцу инициатора, питомец не мягко удалён | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `reminder_file` | Напоминание (`reminder`), см. [Напоминания — Backend](../calendar/napominaniya-backend.md) | до 10 (с суммарным ограничением, см. там же) | напоминание незавершённое, его настройки принадлежат питомцу инициатора, питомец не мягко удалён | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 | `vaccination_file` | Вакцинация (`vaccination`), см. [Вакцинации — Backend](../vetpassport/vaktsinatsii-backend.md) | до 10 | `vaccination.id = owner_id AND vaccination.deleted_at IS NULL AND EXISTS (SELECT 1 FROM pet WHERE pet.id = vaccination.pet_id AND pet.user_id = userID AND pet.deleted_at IS NULL)` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 | `disease_file` | Заболевание (`disease`), см. [Заболевания — Backend](../vetpassport/zabolevaniya-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `disease.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 | `vet_visit_file` | Визит к ветеринару (`vet_visit`), см. [Посещения ветеринара — Backend](../vetpassport/vizity-veterinara-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `vet_visit.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
@@ -108,7 +112,7 @@ CREATE TABLE file (
 
 3. Система повторно проверяет владение для (`owner_type`, `owner_id`) найденной строки по правилу из реестра — иначе `404`.
 
-4. Система удаляет строку `file` и предпринимает best-effort попытку удалить объект в S3 (ошибка удаления в S3 не проваливает запрос — та же логика, что описана в «Фотография питомца — Backend» для одиночной фотографии).
+4. Система удаляет строку `file` и, если ни одна другая строка `file` не указывает на тот же `object_key`, предпринимает best-effort попытку удалить объект в S3 (если ссылки на объект остались, объект сохраняется) (ошибка удаления в S3 не проваливает запрос — та же логика, что описана в «Фотография питомца — Backend» для одиночной фотографии).
 
 5. Система возвращает `204 No Content`.
 
