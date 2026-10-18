@@ -2,7 +2,7 @@
 id: 247d2c19-2478-49dc-b7c7-192dbeaf4279
 title: Справочник значений (словари enum)
 created_at: 2026-08-24
-updated_at: 2026-09-25
+updated_at: 2026-10-11
 ---
 Единый справочник допустимых значений для полей-перечислений (enum), используемых в требованиях Pets и Calendar. Другие страницы требований должны ссылаться на этот документ вместо того, чтобы дублировать или расплывчато описывать списки значений.
 
@@ -30,7 +30,9 @@ freshwater, saltwater.
 
 ## Календарь — Тип события (event type)
 
-weight, temperature, feeding, water, activity, sleep, medication, hygiene, mood, urine, defecation, vomit, diarrhea, other, molting, egg_laying, water_quality, heat_cycle.
+weight, temperature, feeding, water, activity, sleep, medication, hygiene, mood, urine, defecation, vomit, diarrhea, other, molting, egg_laying, water_quality, heat_cycle, vaccination.
+
+`vaccination` — системный тип: создаётся флоу «Вакцинации» (факт введения, напоминание на следующую вакцинацию и дополнительные напоминания) и не предлагается в ручном выборе типа события; см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md), раздел «Типы, создаваемые системой».
 
 Форма типизированного значения (`value`) по каждому типу события, а также характер значения и правила агрегации для графиков — см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md). Enum ниже — вложенные словари полей `value`; они принадлежат конкретному типу события и не применяются к другим типам.
 
@@ -126,6 +128,6 @@ underweight, thin, normal, overweight, obese.
 
 ## Ветпаспорт — Статус вакцинации (computed, не хранится)
 
-overdue, soon, current.
+overdue, soon, current, completed.
 
-Не enum-поле модели данных — вычисляется на клиенте из `vaccination.next_date` относительно текущей даты (см. [Вакцинации — Frontend](../vetpassport/vaktsinatsii-frontend.md)): `overdue` — `next_date` в прошлом, `soon` — в пределах 30 дней включительно, `current` — позже. Записан здесь для единообразия с остальными словарями страницы, а не потому что backend валидирует или хранит это значение.
+Не enum-поле модели данных — вычисляется на клиенте из `vaccination.next_date` относительно текущей даты (см. [Вакцинации — Frontend](../vetpassport/vaktsinatsii-frontend.md)): `overdue` — `next_date` в прошлом, `soon` — в пределах 30 дней включительно, `current` — позже; `completed` — задан `vaccination.completed_at` (вакцинация завершена отметкой «Выполнено» напоминания на следующую вакцинацию). Записан здесь для единообразия с остальными словарями страницы, а не потому что backend валидирует или хранит это значение.

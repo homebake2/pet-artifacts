@@ -3,7 +3,7 @@ id: bcc318cd-b4b9-4e6e-8916-36c424a1d496
 title: Файлы события — Backend
 parent_page: PET/pages/calendar/index.md
 created_at: 2026-09-04
-updated_at: 2026-09-04
+updated_at: 2026-10-10
 ---
 ## Смотрите также
 
@@ -29,7 +29,7 @@ updated_at: 2026-09-04
 
 | `owner_type` | `owner_id` | Кардинальность | Проверка владения | Допустимые `content_type` |
 | --- | --- | --- | --- | --- |
-| `event_file` | `event.id` | до 10 | `event.id = owner_id AND event.deleted_at IS NULL AND EXISTS (SELECT 1 FROM pet WHERE pet.id = event.pet_id AND pet.user_id = userID AND pet.deleted_at IS NULL)` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+| `event_file` | `event.id` | до 10 | `event.id = owner_id AND event.deleted_at IS NULL AND event.user_id = userID AND EXISTS (SELECT 1 FROM event_pet JOIN pet ON pet.id = event_pet.pet_id WHERE event_pet.event_id = event.id AND pet.deleted_at IS NULL)` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 
 Проверка владения здесь совпадает с проверкой, используемой при создании и редактировании события (см. «Добавление события — Backend», «Редактирование события — Backend») — включая то, что мягко удалённый питомец блокирует операцию. Это отличается от удаления самого события (см. «Удаление события — Backend»), где мягко удалённый питомец операцию не блокирует, — для файлов сознательно выбрано более строгое правило создания/редактирования, а не правило удаления, поскольку прикрепление файла — это добавление новых данных к событию, а не их устранение. Отдельного, специфичного только для файлов, правила владения не вводится.
 
