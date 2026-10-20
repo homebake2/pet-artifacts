@@ -2,7 +2,7 @@
 id: 8ab71577-9e9a-44e6-a08d-559c0e3e83ae
 title: "Требования: Pets"
 created_at: 2026-08-24
-updated_at: 2026-09-25
+updated_at: 2026-10-20
 ---
 
 ## Страницы
@@ -13,6 +13,8 @@ updated_at: 2026-09-25
 - [Фотография питомца — Frontend](fotografiya-pitomtsa-frontend.md)
 - [Просмотр карточки питомца — Backend](prosmotr-kartochki-pitomtsa-backend.md)
 - [Просмотр карточки питомца — Frontend](prosmotr-kartochki-pitomtsa-frontend.md)
+- [Передача питомца — Backend](peredacha-pitomtsa-backend.md)
+- [Передача питомца — Frontend](peredacha-pitomtsa-frontend.md)
 - [Профильные поля питомца по видам](profilnye-polya-pitomtsa-po-vidam.md)
 - [Редактирование питомца — Backend](redaktirovanie-pitomtsa-backend.md)
 - [Редактирование питомца — Frontend](redaktirovanie-pitomtsa-frontend.md)

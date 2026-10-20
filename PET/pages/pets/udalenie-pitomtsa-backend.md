@@ -3,7 +3,7 @@ id: 739462e4-4b2f-47e9-b465-7506f9f6fc30
 title: Удаление питомца — Backend
 parent_page: PET/pages/pets/index.md
 created_at: 2026-08-24
-updated_at: 2026-10-11
+updated_at: 2026-10-20
 ---
 ## Смотрите также
 
@@ -32,6 +32,8 @@ updated_at: 2026-10-11
 3. Система проверяет существование питомца по `id = ... AND user_id = ... AND deleted_at IS NULL` — иначе `404`.
 
 4. В одной транзакции система выполняет `UPDATE pet SET deleted_at = текущее время WHERE id = ... AND user_id = ...` и жёстко удаляет связи питомца с настройками напоминаний (`reminder_plan_pet`); настройки напоминаний (`reminder_plan`), у которых питомцев не осталось, удаляются вместе с их напоминаниями (`reminder`) и файлами (`reminder_plan_file`, `reminder_file`); настройки, общие с другими питомцами, остаются у них. Объекты S3 удаляются после фиксации транзакции, когда на них не осталось ссылок (см. [Напоминания — Backend](../calendar/napominaniya-backend.md), раздел «Файлы»).
+
+   В той же транзакции активная передача питомца (`pet_transfer` со статусом `pending`), если есть, переводится в `cancelled` (см. [Передача питомца — Backend](peredacha-pitomtsa-backend.md)).
 
 5. Система возвращает `204 No Content`.
 
