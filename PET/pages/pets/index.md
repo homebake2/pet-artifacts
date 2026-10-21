@@ -15,6 +15,8 @@ updated_at: 2026-10-20
 - [Просмотр карточки питомца — Frontend](prosmotr-kartochki-pitomtsa-frontend.md)
 - [Передача питомца — Backend](peredacha-pitomtsa-backend.md)
 - [Передача питомца — Frontend](peredacha-pitomtsa-frontend.md)
+- [Доступ к питомцу — Backend](dostup-k-pitomtsu-backend.md)
+- [Доступ к питомцу — Frontend](dostup-k-pitomtsu-frontend.md)
 - [Профильные поля питомца по видам](profilnye-polya-pitomtsa-po-vidam.md)
 - [Редактирование питомца — Backend](redaktirovanie-pitomtsa-backend.md)
 - [Редактирование питомца — Frontend](redaktirovanie-pitomtsa-frontend.md)

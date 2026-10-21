@@ -137,3 +137,21 @@ overdue, soon, current, completed.
 pending, accepted, declined, cancelled, expired.
 
 Поле `pet_transfer.status`; `pending` — передача создана и ожидает решения получателя, остальные значения конечные: принята, отклонена получателем, отменена отправителем (в том числе при удалении питомца) и истёк срок действия кода. Переходы и правила — см. [Передача питомца — Backend](../pets/peredacha-pitomtsa-backend.md).
+
+## Доступ к питомцу — Роль (access)
+
+owner, full, view.
+
+Поле `access` в ответах `GET /pet` и `GET /pet/{id}` — роль текущего пользователя по отношению к питомцу: `owner` — владелец (`pet.user_id`), `full` — полный доступ, `view` — только просмотр. В таблице `pet_access.role` и в теле `POST /pet/{id}/access-invites` допустимы только `full` и `view`: `owner` не выдаётся. Права ролей — см. [Общие требования: Доступ к питомцу](obschie-trebovaniya-dostup-k-pitomtsu.md).
+
+## Доступ к питомцу — Причина потери доступа (reason)
+
+revoked, pet_deleted, pet_transferred.
+
+Поле `pet_access_notice.reason` и элементов `access_lost` в ответе `GET /pet`: `revoked` — владелец отозвал доступ, `pet_deleted` — владелец удалил питомца или аккаунт, `pet_transferred` — питомец передан другому владельцу. Отказ участника от доступа уведомления не создаёт. См. [Доступ к питомцу — Backend](../pets/dostup-k-pitomtsu-backend.md).
+
+## Доступ к питомцу — Статус приглашения (status)
+
+pending, accepted, declined, cancelled, expired.
+
+Поле `pet_access_invite.status`; значения и переходы те же, что у статуса передачи (см. выше), но для приглашения к доступу: `accepted` — доступ выдан, `cancelled` — отменено владельцем (в том числе при удалении питомца и при принятии передачи питомца). См. [Доступ к питомцу — Backend](../pets/dostup-k-pitomtsu-backend.md).

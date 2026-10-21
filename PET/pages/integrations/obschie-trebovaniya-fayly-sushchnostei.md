@@ -3,7 +3,7 @@ id: 307f25f3-6366-4d4e-a5e8-20a4a3aada4e
 title: "Общие требования: Файлы сущностей"
 parent_page: PET/pages/integrations/index.md
 created_at: 2026-09-04
-updated_at: 2026-10-10
+updated_at: 2026-10-20
 ---
 ## Смотрите также
 
@@ -63,6 +63,8 @@ CREATE TABLE file (
 | `vet_visit_file` | Визит к ветеринару (`vet_visit`), см. [Посещения ветеринара — Backend](../vetpassport/vizity-veterinara-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `vet_visit.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 | `allergy_file` | Аллергия (`allergy`), см. [Аллергии — Backend](../vetpassport/allergii-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `allergy.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
 | `medication_file` | Лекарство (`medication`), см. [Лекарства — Backend](../vetpassport/lekarstva-backend.md) | до 10 | аналогично `vaccination_file`, но проверка через `medication.pet_id` | `image/jpeg`, `image/png`, `image/webp`, `application/pdf` |
+
+**Доступ, выданный владельцем питомца.** Столбец «Проверка владения» задаёт связь файла с сущностью, а право на операцию определяется ролью пользователя у питомца (см. [Общие требования: Доступ к питомцу](../common/obschie-trebovaniya-dostup-k-pitomtsu.md)): условия `pet.user_id = userID`, `event.user_id = userID` и «настройки принадлежат инициатору» читаются как «пользователь — владелец питомца или участник». Загрузка, подтверждение и удаление файла (операции записи) требуют роль `owner` или `full` — у `view` `403`; для записей с несколькими питомцами — роль `owner`/`full` у каждого видимого питомца записи, а при отсутствии доступа к какому-либо из них — `404`. Чтение файлов (presigned GET URL в ответах сущностей) доступно любой роли при выполнении правил видимости записи. `file.user_id` — автор загрузки и права на файл не определяет.
 
 Пять новых типов Ветпаспорта повторяют форму чтения `files`/`files_count`, уже установленную для `event_file` (см. [Файлы события — Backend](../calendar/fayly-sobytiya-backend.md)): полный список `files` — в детальном ответе одной записи (`GET`/`POST` конкретной сущности), счётчик `files_count` — в элементах списка. Подробности чтения для каждого типа — на собственной странице сущности, не здесь (см. «Область действия» ниже).
 
