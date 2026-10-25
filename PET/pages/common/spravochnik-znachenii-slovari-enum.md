@@ -88,9 +88,31 @@ calm, playful, lethargic, anxious, aggressive, hiding.
 
 `hiding` — питомец прячется и избегает контакта; для рептилий, грызунов и рыб это одно из основных наблюдаемых изменений поведения.
 
-## Календарь — Статус выделений (urine / defecation / vomit / diarrhea — value.status)
+## Календарь — Характер мочеиспускания (urine.status)
 
-normal, abnormal.
+normal, frequent, scant, painful, bloody, color_change, other.
+
+`normal` — без особенностей; `frequent` — учащённое; `scant` — скудное или отсутствует; `painful` — болезненное, с напряжением; `bloody` — с кровью; `color_change` — изменился цвет; `other` — иное, с пояснением в `notes`.
+
+## Календарь — Характер дефекации (defecation.status)
+
+normal, soft, constipation, mucus, bloody, other.
+
+`normal` — без особенностей; `soft` — мягкий стул; `constipation` — запор (стула нет или он твёрдый и скудный); `mucus` — со слизью; `bloody` — с кровью; `other` — иное, с пояснением в `notes`.
+
+## Календарь — Характер поноса (diarrhea.status)
+
+mild, severe, bloody, other.
+
+У поноса нет значения «в норме»: сам факт события означает проблему, поэтому словарь описывает тяжесть и сопутствующий признак. `mild` — лёгкий (разжиженный стул); `severe` — тяжёлый (водянистый, многократный); `bloody` — с кровью; `other` — иное, с пояснением в `notes`.
+
+## Календарь — Характер рвоты (vomit.status)
+
+once, repeated, bloody, foam, food_residue, other.
+
+У рвоты нет значения «в норме»: сам факт события означает проблему. `once` — однократная; `repeated` — повторная; `bloody` — с кровью; `foam` — с пеной; `food_residue` — с остатками пищи; `other` — иное, с пояснением в `notes`.
+
+Одинаковое значение в разных словарях выше (`normal`, `bloody`, `other`, `mucus`) имеет один и тот же смысл и одну и ту же подпись — на этом строится подпись категории серии графика (см. [Графики динамики — Frontend](../calendar/grafiki-dinamiki-frontend.md)).
 
 ## Календарь — Статус линьки (molting.status)
 
