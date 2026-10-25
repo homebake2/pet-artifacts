@@ -2,7 +2,7 @@
 id: 247d2c19-2478-49dc-b7c7-192dbeaf4279
 title: Справочник значений (словари enum)
 created_at: 2026-08-24
-updated_at: 2026-10-20
+updated_at: 2026-10-25
 ---
 Единый справочник допустимых значений для полей-перечислений (enum), используемых в требованиях Pets и Calendar. Другие страницы требований должны ссылаться на этот документ вместо того, чтобы дублировать или расплывчато описывать списки значений.
 
@@ -30,7 +30,7 @@ freshwater, saltwater.
 
 ## Календарь — Тип события (event type)
 
-weight, temperature, feeding, water, activity, sleep, medication, hygiene, mood, urine, defecation, vomit, diarrhea, other, molting, egg_laying, water_quality, heat_cycle, vaccination.
+weight, temperature, feeding, water, activity, sleep, medication, hygiene, mood, urine, defecation, vomit, diarrhea, other, molting, egg_laying, water_quality, heat_cycle, vaccination, purchase.
 
 `vaccination` — системный тип: создаётся флоу «Вакцинации» (факт введения, напоминание на следующую вакцинацию и дополнительные напоминания) и не предлагается в ручном выборе типа события; см. [Модель значения события и реестр метрик](model-znacheniya-sobytiya-i-metriki.md), раздел «Типы, создаваемые системой».
 
@@ -107,6 +107,12 @@ normal, abnormal.
 ## Календарь — Фаза течки (heat_cycle.phase)
 
 started, ended.
+
+## Календарь — Категория покупки (purchase.category)
+
+food, treats, toys, accessories, equipment, litter, care, medicines, other.
+
+`food` — корм; `treats` — лакомства; `toys` — игрушки; `accessories` — аксессуары (ошейник, поводок, лежанка, одежда); `equipment` — оборудование (клетка, аквариум, террариум, переноска); `litter` — наполнитель и подстилка; `care` — средства ухода; `medicines` — лекарства и витамины; `other` — другое. Словарь применим любому виду питомца без ограничений.
 
 ## Календарь — Интервал агрегации графика (bucket)
 

@@ -3,7 +3,7 @@ id: 05439ec5-4091-4bd6-95a9-a79cfcb43ef7
 title: Модель значения события и реестр метрик
 parent_page: PET/pages/common/trebovaniya-obschie.md
 created_at: 2026-09-03
-updated_at: 2026-10-11
+updated_at: 2026-10-25
 ---
 
 ## Смотрите также
@@ -71,6 +71,7 @@ updated_at: 2026-10-11
 | `egg_laying` | `count` (number), `status` (enum «Статус кладки», опционально) | штуки | `count` — 1–200; `status` опционален, при отсутствии считается `normal` только для отображения (валидация значения по умолчанию не требует) | — |
 | `water_quality` | `temperature_c` (number, опц.), `ph` (number, опц.), `ammonia_ppm` (number, опц.), `changed_volume_ml` (number, опц.) | °C; pH; ppm; мл | хотя бы одно из четырёх полей обязано быть передано (пустое `value` без единого показателя не несёт факта); `temperature_c` — 0–40; `ph` — 0–14; `ammonia_ppm` — 0–10; `changed_volume_ml` — 0–200000 | — |
 | `heat_cycle` | `phase` (enum «Фаза течки») | — | `phase` обязателен | `phase`: `started` («Началась») |
+| `purchase` | `category` (enum «Категория покупки»), `price` (number) | денежная сумма без указания валюты (валюта не хранится) | `category` обязателен; `price` обязателен, 0–10000000; подробности покупки (название, магазин) несёт `notes` | — |
 
 Поля, не описанные в форме `value` для данного `type`, недопустимы: сервер отклоняет запрос с 400, а не игнорирует лишние поля молча — иначе опечатка в имени поля привела бы к тихой потере введённых пользователем данных.
 
@@ -151,6 +152,7 @@ updated_at: 2026-10-11
 | `egg_laying` | только `PARROT`, `CANARY`, `CHICKEN`, `DUCK`, `PIGEON`, `TURTLE`, `IGUANA`, `GECKO`, `BEARDED_AGAMA`, `SNAKE`, `PYTHON`, `FROG`, `OTHER` |
 | `water_quality` | только `FISH`, `AXOLOTL`, `FROG`, `TURTLE`, `OTHER` |
 | `heat_cycle` | только `DOG`, `CAT`, `RABBIT`, `MINI_GOAT`, `OTHER` |
+| `purchase` | все |
 
 Правила, вытекающие из применимости:
 
@@ -252,6 +254,7 @@ updated_at: 2026-10-11
 | `egg_laying` | `quantity` | `count` (шт.) | сумма | столбцы |
 | `water_quality` | смешанный (см. ниже) | `temperature_c` (°C), `ph`, `ammonia_ppm` (ppm) — каждая `measure`; `changed_volume_ml` (мл) — `quantity` | `temperature_c`/`ph`/`ammonia_ppm` — среднее и последнее значение интервала, каждая метрика отдельно; `changed_volume_ml` — сумма | линия на каждую `measure`-метрику, столбцы на `changed_volume_ml` |
 | `heat_cycle` | `category` | `phase` | количество событий по каждому значению категории | столбцы по категориям |
+| `purchase` | `quantity` | `price` (денежная сумма без единицы) | сумма | столбцы |
 
 Правила агрегации, вытекающие из реестра и обязательные к соблюдению:
 
