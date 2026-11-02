@@ -2,7 +2,7 @@
 id: deb6e1ea-08c3-4fac-a71f-f0995cea61d4
 title: "Требования: Web"
 created_at: 2026-11-02
-updated_at: 2026-11-02
+updated_at: 2026-11-03
 ---
 
 ## Страницы
@@ -15,6 +15,7 @@ updated_at: 2026-11-02
 - [Предложения на сайте — Backend](predlozheniya-saita-backend.md)
 - [Поддержка проекта на сайте](podderzhka-proekta-saita.md)
 - [Политика конфиденциальности на сайте](politika-konfidentsialnosti-saita.md)
+- [Удаление аккаунта на сайте](udalenie-akkaunta-saita.md)
 - [Доступ сайта к API](dostup-saita-k-api.md)
 - [Контекст приложения на веб-сайте](../config/kontekst-prilozheniya-na-vebe.md) — передача темы, языка и идентификатора пользователя из мобильного приложения на сайт.
 
