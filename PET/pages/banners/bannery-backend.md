@@ -3,7 +3,7 @@ id: 89316e52-8879-49be-ac55-076a845f3e3a
 title: Баннеры — Backend
 parent_page: PET/pages/banners/index.md
 created_at: 2026-10-08
-updated_at: 2026-10-08
+updated_at: 2026-11-01
 ---
 **Смотрите также:**
 
@@ -36,7 +36,8 @@ updated_at: 2026-10-08
 | `starts_at` | timestamptz, nullable | Начало окна показа (включительно). `null` — без нижней границы. |
 | `ends_at` | timestamptz, nullable | Конец окна показа (не включительно). `null` — без верхней границы. Если заданы оба, `ends_at > starts_at` (CHECK). |
 | `priority` | integer, NOT NULL, default `0` | Чем больше, тем выше в выдаче. |
-| `frequency` | text, enum, NOT NULL | Частота показа: `once` или `every_launch` (см. «Баннеры — Frontend»). |
+| `frequency` | text, enum, NOT NULL | Частота показа: `once` или `every_launch` (см. «Баннеры — Frontend»). Для баннера с `dismissible = false` клиентом не учитывается. |
+| `dismissible` | boolean, NOT NULL, default `true` | `false` — баннер **нельзя закрыть** (например, требование обновить приложение): см. «Баннер без возможности закрытия». |
 | `cta_action` | text, enum, nullable | Тип действия: `url`, `deeplink`, `store`; `null` — действия нет (см. «Действия»). |
 | `cta_target` | text, nullable | Цель действия (URL или внутренний маршрут), общая для всех языков. |
 | `created_at` | timestamptz, NOT NULL, default `now()` | |
@@ -113,6 +114,20 @@ updated_at: 2026-10-08
 
 Для шаблонов, где действие отображается с подписью (`sheet`, `cover`, `dialog`, `carousel`), `cta_label` обязателен; иначе действие считается невалидным.
 
+## Баннер без возможности закрытия
+
+Баннер с `dismissible = false` пользователь закрыть не может: клиент не предоставляет никакой возможности закрыть или отложить баннер, не учитывает `frequency` и список закрытых, а выполнение действия баннер не закрывает (см. «Баннеры — Frontend»). Такой баннер исчезает, только когда сервер перестаёт его отдавать: истекло окно показа, `is_show = false`, не выполнено условие таргетинга (например, `app_version` с `min` обновлённого клиента) или он удалён. Типовое применение — требование обновить приложение: `app_version` с `max`, `cta_action = store`, высокий `priority`.
+
+Правила:
+
+* такому баннеру обязательно действие `cta_action` = `url` или `store` (иначе пользователь застрянет на баннере); `deeplink` недопустим — переход внутри приложения не должен снимать блокировку;
+
+* `secondary_label` в ответе всегда `null`;
+
+* `frequency` хранится и отдаётся как обычно, но клиентом игнорируется.
+
+Нарушение этих правил делает баннер невалидным (см. «Невалидные баннеры»).
+
 ## Основной сценарий
 
 `GET /banner?platform=<ios|android>&appVersion=<MAJOR.MINOR.PATCH>`
@@ -135,7 +150,7 @@ updated_at: 2026-10-08
 
 5. Система возвращает `200 OK` с телом `{"items": [Banner]}`; если подходящих нет — `{"items": []}` со статусом `200`. Ограничения на количество в ответе нет.
 
-Элемент `Banner` в ответе содержит: `id`, `layout`, `tone`, `frequency`, `overline`, `title`, `body`, `badge`, `image` (`{url, blurhash}`), `slides` (`[{image, title, body}]`, по возрастанию `position`), `primaryCta` (`{label, action, target}`), `secondaryLabel`. Все переводимые значения — уже строки на языке запроса. Поля, которых нет у баннера, возвращаются как `null`. Служебные поля (`is_show`, окно, правила таргетинга, `banner_user`, `priority`) в ответ не попадают.
+Элемент `Banner` в ответе содержит: `id`, `layout`, `tone`, `frequency`, `dismissible` (обязательное, boolean), `overline`, `title`, `body`, `badge`, `image` (`{url, blurhash}`), `slides` (`[{image, title, body}]`, по возрастанию `position`), `primaryCta` (`{label, action, target}`), `secondaryLabel`. Все переводимые значения — уже строки на языке запроса. Поля, которых нет у баннера, возвращаются как `null`. Служебные поля (`is_show`, окно, правила таргетинга, `banner_user`, `priority`) в ответ не попадают.
 
 ## Невалидные баннеры
 
@@ -147,7 +162,7 @@ updated_at: 2026-10-08
 
 * строка `banner_targeting` имеет неизвестный `type` или `params` не соответствуют типу (в том числе значения платформ вне enum, версии не в формате `MAJOR.MINOR.PATCH`);
 
-* действие не проходит правила раздела «Действия»; у слайда нет `title`; слайдов меньше 1 или больше 10;
+* действие не проходит правила раздела «Действия»; баннер с `dismissible = false` не имеет действия `url` или `store`; у слайда нет `title`; слайдов меньше 1 или больше 10;
 
 * `image_url` не является абсолютным `https` URL.
 
