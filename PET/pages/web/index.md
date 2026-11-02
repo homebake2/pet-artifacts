@@ -8,11 +8,13 @@ updated_at: 2026-11-02
 ## Страницы
 
 - [Структура и навигация сайта](struktura-i-navigatsiya-saita.md)
+- [Язык и локализация сайта](yazyk-i-lokalizatsiya-saita.md)
 - [Оформление, тема и адаптивность сайта](oformlenie-i-tema-saita.md)
 - [Главная страница сайта «О приложении»](glavnaya-o-prilozhenii-saita.md)
 - [Предложения на сайте — Frontend](predlozheniya-saita-frontend.md)
 - [Предложения на сайте — Backend](predlozheniya-saita-backend.md)
 - [Поддержка проекта на сайте](podderzhka-proekta-saita.md)
+- [Политика конфиденциальности на сайте](politika-konfidentsialnosti-saita.md)
 - [Доступ сайта к API](dostup-saita-k-api.md)
 - [Контекст приложения на веб-сайте](../config/kontekst-prilozheniya-na-vebe.md) — передача темы, языка и идентификатора пользователя из мобильного приложения на сайт.
 
